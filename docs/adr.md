@@ -1,4 +1,4 @@
-_Last updated: 2026-10-04_
+_Last updated: 2026-11-03_
 # Architectural Decision Records
 
 This document aims to keep track of all the decisions made during our group meeting. In case there is a confusion as to why a certain task was done a certain way this document should be refered as it will be working as a history log.
