@@ -1,0 +1,8 @@
+admin/
+authentication/
+config/
+/employee/
+/manager/
+/shared/
+system/templates
+system/Static
