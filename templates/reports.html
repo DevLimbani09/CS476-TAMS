@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Team Reports | TAMS</title>
+
+    <link rel="stylesheet" href="../static/manager/reports/styles.css">
+    
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: reports__*. -->
+</head>
+<body class="TAMS-app page-reports" data-page="reports">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Manager Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="manager_dashboard.html">Manager Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_timecards.html">Pending Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_time_entries.html">Pending Time Entries</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_leave_requests.html">Leave Approvals</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="reports.html" aria-current="page">Team Reports</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="assigned_employees.html">Team Members</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="delegation_management.html">Delegations</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Team Reports</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading reports__heading" aria-labelledby="reports-title">
+                <h1 class="TAMS-page-heading__title" id="reports-title">Team Reports</h1>
+                <p class="TAMS-page-heading__description">Filter and summarize team timecards, recorded hours, and approvals.</p>
+            </section>
+            <!-- Generate Team Report section -->
+            <section class="TAMS-card reports__generator" aria-labelledby="reports-generator-title">
+                <h2 class="TAMS-card__title" id="reports-generator-title">Generate Team Report</h2>
+                <p class="reports__guidance">Only records belonging to assigned employees or valid delegated scopes may be included.</p>
+            <!-- Django: add {% csrf_token %}; validate and authorize all actions on the server. -->
+            <form class="TAMS-form reports__form" method="post" action="">
+            <div class="TAMS-form__field reports__report-type-field">
+            <label class="TAMS-form__label" for="reports-report-type">Report Type</label>
+            <select class="TAMS-form__input" id="reports-report-type" name="report_type" required>
+            <option value="timecards">Timecard Summary</option>
+            <option value="hours">Hours Worked</option>
+            <option value="leave">Leave Summary</option>
+            <option value="approvals">Approval Status</option>
+            </select>
+            </div><div class="TAMS-form__field reports__date-from-field">
+            <label class="TAMS-form__label" for="reports-date-from">Start Date</label>
+            <input class="TAMS-form__input" type="date" id="reports-date-from" name="date_from" required>
+            </div><div class="TAMS-form__field reports__date-to-field">
+            <label class="TAMS-form__label" for="reports-date-to">End Date</label>
+            <input class="TAMS-form__input" type="date" id="reports-date-to" name="date_to" required>
+            </div><div class="TAMS-form__field reports__employee-field">
+            <label class="TAMS-form__label" for="reports-employee">Employee (optional)</label>
+            <input class="TAMS-form__input" type="search" id="reports-employee" name="employee" placeholder="Leave blank for your assigned team">
+            </div><div class="TAMS-form__field reports__status-field">
+            <label class="TAMS-form__label" for="reports-status">Status</label>
+            <select class="TAMS-form__input" id="reports-status" name="status">
+            <option value="all">All statuses</option>
+            <option value="approved">Approved</option>
+            <option value="submitted">Submitted</option>
+            <option value="rejected">Rejected</option>
+            </select>
+            </div>
+            <div class="TAMS-form__actions">
+            <button class="TAMS-button TAMS-button--primary" type="submit">Generate Report</button>
+            </div>
+            </form>
+            <div class="TAMS-alert TAMS-alert--error reports__error" role="alert" id="reports-error" hidden>Unable to complete this action. Check the form and try again.</div>
+            <div class="TAMS-alert TAMS-alert--success reports__success" role="status" id="reports-success" hidden>Changes saved.</div>
+            </section>
+            <!-- Report Output section -->
+            <section class="TAMS-card reports__reports" aria-labelledby="reports-reports-title">
+                <h2 class="TAMS-card__title" id="reports-reports-title">Report Output</h2>
+                <table class="TAMS-table reports__table">
+            <caption>Report results</caption>
+            <thead><tr><th scope="col">Employee</th><th scope="col">Time period</th><th scope="col">Work hours</th><th scope="col">Leave hours</th><th scope="col">Status</th></tr></thead>
+            <tbody><tr><td colspan="5">Generate a report to display results.</td></tr></tbody>
+            </table><a class="TAMS-button TAMS-button--secondary" href="report_details.html">View Report Details Template</a>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Leave Request Review | TAMS</title>
+
+    <link rel="stylesheet" href="../static/manager/leave_request_review/styles.css">
+    
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: leave-request-review__*. -->
+</head>
+<body class="TAMS-app page-leave-request-review" data-page="leave_request_review">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Manager Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="manager_dashboard.html">Manager Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_timecards.html">Pending Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_time_entries.html">Pending Time Entries</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_leave_requests.html">Leave Approvals</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="reports.html">Team Reports</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="assigned_employees.html">Team Members</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="delegation_management.html">Delegations</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Leave Request Review</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading leave-request-review__heading" aria-labelledby="leave-request-review-title">
+                <h1 class="TAMS-page-heading__title" id="leave-request-review-title">Leave Request Review</h1>
+                <p class="TAMS-page-heading__description">Decide on an assigned employee’s leave request.</p>
+            </section>
+            <!-- Leave Request Details section -->
+            <section class="TAMS-card leave-request-review__request" aria-labelledby="leave-request-review-request-title">
+                <h2 class="TAMS-card__title" id="leave-request-review-request-title">Leave Request Details</h2>
+                <dl class="leave-request-review__details">
+            <div class="leave-request-review__detail"><dt>Employee</dt><dd>Select a request</dd></div>
+            <div class="leave-request-review__detail"><dt>Leave type</dt><dd>Not available</dd></div>
+            <div class="leave-request-review__detail"><dt>Requested dates</dt><dd>Not available</dd></div>
+            <div class="leave-request-review__detail"><dt>Requested hours</dt><dd>Not available</dd></div>
+            <div class="leave-request-review__detail"><dt>Available balance</dt><dd>Not available</dd></div>
+            <div class="leave-request-review__detail"><dt>Other approved leave</dt><dd>Not available</dd></div>
+            <div class="leave-request-review__detail"><dt>Current status</dt><dd>Not available</dd></div>
+            </dl>
+            </section>
+            <!-- Manager Decision section -->
+            <section class="TAMS-card leave-request-review__decision" aria-labelledby="leave-request-review-decision-title">
+                <h2 class="TAMS-card__title" id="leave-request-review-decision-title">Manager Decision</h2>
+                <p class="leave-request-review__guidance">The backend must recheck leave eligibility, overlapping dates and balance before approving, and sync approved leave into timecards exactly once.</p>
+            <!-- Django: add {% csrf_token %}; validate and authorize all actions on the server. -->
+            <form class="TAMS-form leave-request-review__form" method="post" action="">
+            <div class="TAMS-form__field leave-request-review__review-notes-field">
+            <label class="TAMS-form__label" for="leave-request-review-review-notes">Decision Notes</label>
+            <textarea class="TAMS-form__input" id="leave-request-review-review-notes" name="review_notes" rows="4" placeholder="Reason is required for rejected requests"></textarea>
+            </div>
+            <div class="TAMS-form__actions">
+            <button class="TAMS-button TAMS-button--primary" type="submit" name="intent" value="approve">Approve Leave</button>
+            <button class="TAMS-button TAMS-button--secondary" type="submit" name="intent" value="reject">Reject Leave</button>
+            <a class="TAMS-button TAMS-button--secondary" href="pending_leave_requests.html">Back to Leave Requests</a>
+            </div>
+            </form>
+            <div class="TAMS-alert TAMS-alert--error leave-request-review__error" role="alert" id="leave-request-review-error" hidden>Unable to complete this action. Check the form and try again.</div>
+            <div class="TAMS-alert TAMS-alert--success leave-request-review__success" role="status" id="leave-request-review-success" hidden>Changes saved.</div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
