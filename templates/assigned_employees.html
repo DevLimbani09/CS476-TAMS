@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Assigned Employees | TAMS</title>
+
+    <link rel="stylesheet" href="../static/manager/assigned_employees/styles.css">
+    
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: assigned-employees__*. -->
+</head>
+<body class="TAMS-app page-assigned-employees" data-page="assigned_employees">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Manager Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="manager_dashboard.html">Manager Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_timecards.html">Pending Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_time_entries.html">Pending Time Entries</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_leave_requests.html">Leave Approvals</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="reports.html">Team Reports</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="assigned_employees.html" aria-current="page">Team Members</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="delegation_management.html">Delegations</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Assigned Employees</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading assigned-employees__heading" aria-labelledby="assigned-employees-title">
+                <h1 class="TAMS-page-heading__title" id="assigned-employees-title">Assigned Employees</h1>
+                <p class="TAMS-page-heading__description">View your team’s employee profiles and related records.</p>
+            </section>
+            <!-- Find Your Team section -->
+            <section class="TAMS-card assigned-employees__search" aria-labelledby="assigned-employees-search-title">
+                <h2 class="TAMS-card__title" id="assigned-employees-search-title">Find Your Team</h2>
+
+            
+            <form class="TAMS-form assigned-employees__form" method="get" action="">
+            <div class="TAMS-form__field assigned-employees__search-field">
+            <label class="TAMS-form__label" for="assigned-employees-search">Search Employees</label>
+            <input class="TAMS-form__input" type="search" id="assigned-employees-search" name="search" placeholder="Search name or employee ID">
+            </div><div class="TAMS-form__field assigned-employees__status-field">
+            <label class="TAMS-form__label" for="assigned-employees-status">Account Status</label>
+            <select class="TAMS-form__input" id="assigned-employees-status" name="status">
+            <option value="active">Active</option>
+            <option value="all">All</option>
+            <option value="inactive">Inactive</option>
+            </select>
+            </div>
+            <div class="TAMS-form__actions">
+            <button class="TAMS-button TAMS-button--primary" type="submit">Search Team</button>
+            </div>
+            </form>
+            <div class="TAMS-alert TAMS-alert--error assigned-employees__error" role="alert" id="assigned-employees-error" hidden>Unable to complete this action. Check the form and try again.</div>
+            <div class="TAMS-alert TAMS-alert--success assigned-employees__success" role="status" id="assigned-employees-success" hidden>Changes saved.</div>
+            </section>
+            <!-- Assigned Employees section -->
+            <section class="TAMS-card assigned-employees__team" aria-labelledby="assigned-employees-team-title">
+                <h2 class="TAMS-card__title" id="assigned-employees-team-title">Assigned Employees</h2>
+                <table class="TAMS-table assigned-employees__table">
+            <caption>Your reporting employees</caption>
+            <thead><tr><th scope="col">Employee ID</th><th scope="col">Full name</th><th scope="col">Department</th><th scope="col">Employment type</th><th scope="col">Status</th><th scope="col">Profile</th></tr></thead>
+            <tbody><tr><td colspan="6">No assigned employees to display.</td></tr></tbody>
+            </table><p><a class="TAMS-button TAMS-button--secondary" href="proxy_timecard_create.html">Create Proxy Timecard</a> <a class="TAMS-button TAMS-button--secondary" href="pending_timecards.html">Pending Approvals</a></p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
