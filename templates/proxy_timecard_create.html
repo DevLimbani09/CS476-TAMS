@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Proxy Timecard Create | TAMS</title>
+
+    <link rel="stylesheet" href="../static/manager/proxy_timecard_create/styles.css">
+<!-- File names and form names: snake_case; IDs: kebab-case; page CSS: proxy-timecard-create__*. -->
+</head>
+<body class="TAMS-app page-proxy-timecard-create" data-page="proxy_timecard_create">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Manager Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="manager_dashboard.html">Manager Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_timecards.html">Pending Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_time_entries.html">Pending Time Entries</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_leave_requests.html">Leave Approvals</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="reports.html">Team Reports</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="assigned_employees.html">Team Members</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="delegation_management.html">Delegations</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Proxy Timecard Create</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading proxy-timecard-create__heading" aria-labelledby="proxy-timecard-create-title">
+                <h1 class="TAMS-page-heading__title" id="proxy-timecard-create-title">Proxy Timecard Create</h1>
+                <p class="TAMS-page-heading__description">Submit a timecard on behalf of an absent employee with an audit reason.</p>
+            </section>
+            <!-- Employee Timecard on Behalf section -->
+            <section class="TAMS-card proxy-timecard-create__entry" aria-labelledby="proxy-timecard-create-entry-title">
+                <h2 class="TAMS-card__title" id="proxy-timecard-create-entry-title">Employee Timecard on Behalf</h2>
+                <p class="proxy-timecard-create__guidance">This action is only allowed for an assigned employee who cannot submit. Record both the manager actor and employee owner; reject duplicate periods.</p>
+            <!-- Django: add {% csrf_token %}; validate and authorize all actions on the server. -->
+            <form class="TAMS-form proxy-timecard-create__form" method="post" action="">
+            <div class="TAMS-form__field proxy-timecard-create__employee-field">
+            <label class="TAMS-form__label" for="proxy-timecard-create-employee">Employee</label>
+            <input class="TAMS-form__input" type="search" id="proxy-timecard-create-employee" name="employee" required placeholder="Select an employee in your team">
+            </div><div class="TAMS-form__field proxy-timecard-create__period-start-field">
+            <label class="TAMS-form__label" for="proxy-timecard-create-period-start">Pay Period Start Date</label>
+            <input class="TAMS-form__input" type="date" id="proxy-timecard-create-period-start" name="period_start" required>
+            </div><div class="TAMS-form__field proxy-timecard-create__period-end-field">
+            <label class="TAMS-form__label" for="proxy-timecard-create-period-end">Pay Period End Date</label>
+            <input class="TAMS-form__input" type="date" id="proxy-timecard-create-period-end" name="period_end" required>
+            </div><fieldset class="proxy-timecard-create__entries"><legend>Weekly Hours</legend><table class="TAMS-table proxy-timecard-create__entry-table"><caption>Employee work hours entered by the manager</caption><thead><tr><th scope="col">Day</th><th scope="col">Date</th><th scope="col">Hours</th></tr></thead><tbody><tr><th scope="row">Day 1</th><td><input class="TAMS-form__input" type="date" name="work_date_1" id="proxy-timecard-create-work-date-1" aria-label="Day 1 date"></td><td><input class="TAMS-form__input" type="number" min="0" max="24" step="0.25" name="work_hours_1" id="proxy-timecard-create-work-hours-1" aria-label="Day 1 hours"></td></tr><tr><th scope="row">Day 2</th><td><input class="TAMS-form__input" type="date" name="work_date_2" id="proxy-timecard-create-work-date-2" aria-label="Day 2 date"></td><td><input class="TAMS-form__input" type="number" min="0" max="24" step="0.25" name="work_hours_2" id="proxy-timecard-create-work-hours-2" aria-label="Day 2 hours"></td></tr><tr><th scope="row">Day 3</th><td><input class="TAMS-form__input" type="date" name="work_date_3" id="proxy-timecard-create-work-date-3" aria-label="Day 3 date"></td><td><input class="TAMS-form__input" type="number" min="0" max="24" step="0.25" name="work_hours_3" id="proxy-timecard-create-work-hours-3" aria-label="Day 3 hours"></td></tr><tr><th scope="row">Day 4</th><td><input class="TAMS-form__input" type="date" name="work_date_4" id="proxy-timecard-create-work-date-4" aria-label="Day 4 date"></td><td><input class="TAMS-form__input" type="number" min="0" max="24" step="0.25" name="work_hours_4" id="proxy-timecard-create-work-hours-4" aria-label="Day 4 hours"></td></tr><tr><th scope="row">Day 5</th><td><input class="TAMS-form__input" type="date" name="work_date_5" id="proxy-timecard-create-work-date-5" aria-label="Day 5 date"></td><td><input class="TAMS-form__input" type="number" min="0" max="24" step="0.25" name="work_hours_5" id="proxy-timecard-create-work-hours-5" aria-label="Day 5 hours"></td></tr><tr><th scope="row">Day 6</th><td><input class="TAMS-form__input" type="date" name="work_date_6" id="proxy-timecard-create-work-date-6" aria-label="Day 6 date"></td><td><input class="TAMS-form__input" type="number" min="0" max="24" step="0.25" name="work_hours_6" id="proxy-timecard-create-work-hours-6" aria-label="Day 6 hours"></td></tr><tr><th scope="row">Day 7</th><td><input class="TAMS-form__input" type="date" name="work_date_7" id="proxy-timecard-create-work-date-7" aria-label="Day 7 date"></td><td><input class="TAMS-form__input" type="number" min="0" max="24" step="0.25" name="work_hours_7" id="proxy-timecard-create-work-hours-7" aria-label="Day 7 hours"></td></tr></tbody></table></fieldset><div class="TAMS-form__field proxy-timecard-create__reason-field">
+            <label class="TAMS-form__label" for="proxy-timecard-create-reason">Reason for Manager Submission</label>
+            <textarea class="TAMS-form__input" id="proxy-timecard-create-reason" name="reason" required rows="4" placeholder="Required explanation for acting on the employee’s behalf"></textarea>
+            </div>
+            <div class="TAMS-form__actions">
+            <button class="TAMS-button TAMS-button--primary" type="submit" name="intent" value="submit">Submit on Behalf</button>
+            <a class="TAMS-button TAMS-button--secondary" href="manager_dashboard.html">Cancel</a>
+            </div>
+            </form>
+            <div class="TAMS-alert TAMS-alert--error proxy-timecard-create__error" role="alert" id="proxy-timecard-create-error" hidden>Unable to complete this action. Check the form and try again.</div>
+            <div class="TAMS-alert TAMS-alert--success proxy-timecard-create__success" role="status" id="proxy-timecard-create-success" hidden>Changes saved.</div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

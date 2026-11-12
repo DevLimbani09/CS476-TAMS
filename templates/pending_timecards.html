@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Pending Timecards | TAMS</title>
+
+    <link rel="stylesheet" href="../static/manager/pending_timecards/styles.css">
+    
+<!-- File names and form names: snake_case; IDs: kebab-case; page CSS: pending-timecards__*. -->
+</head>
+<body class="TAMS-app page-pending-timecards" data-page="pending_timecards">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Manager Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="manager_dashboard.html">Manager Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_timecards.html" aria-current="page">Pending Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_time_entries.html">Pending Time Entries</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_leave_requests.html">Leave Approvals</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="reports.html">Team Reports</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="assigned_employees.html">Team Members</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="delegation_management.html">Delegations</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Pending Timecards</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading pending-timecards__heading" aria-labelledby="pending-timecards-title">
+                <h1 class="TAMS-page-heading__title" id="pending-timecards-title">Pending Timecards</h1>
+                <p class="TAMS-page-heading__description">See timecards submitted by employees you are authorized to manage.</p>
+            </section>
+            <!-- Find Submitted Timecards section -->
+            <section class="TAMS-card pending-timecards__filters" aria-labelledby="pending-timecards-filters-title">
+                <h2 class="TAMS-card__title" id="pending-timecards-filters-title">Find Submitted Timecards</h2>
+
+            
+            <form class="TAMS-form pending-timecards__form" method="get" action="">
+            <div class="TAMS-form__field pending-timecards__employee-field">
+            <label class="TAMS-form__label" for="pending-timecards-employee">Employee</label>
+            <input class="TAMS-form__input" type="search" id="pending-timecards-employee" name="employee" placeholder="Search assigned employees">
+            </div><div class="TAMS-form__field pending-timecards__period-start-field">
+            <label class="TAMS-form__label" for="pending-timecards-period-start">Period From</label>
+            <input class="TAMS-form__input" type="date" id="pending-timecards-period-start" name="period_start">
+            </div>
+            <div class="TAMS-form__actions">
+            <button class="TAMS-button TAMS-button--primary" type="submit">Apply Filters</button>
+            </div>
+            </form>
+            <div class="TAMS-alert TAMS-alert--error pending-timecards__error" role="alert" id="pending-timecards-error" hidden>Unable to complete this action. Check the form and try again.</div>
+            <div class="TAMS-alert TAMS-alert--success pending-timecards__success" role="status" id="pending-timecards-success" hidden>Changes saved.</div>
+            </section>
+            <!-- Timecards Awaiting Approval section -->
+            <section class="TAMS-card pending-timecards__queue" aria-labelledby="pending-timecards-queue-title">
+                <h2 class="TAMS-card__title" id="pending-timecards-queue-title">Timecards Awaiting Approval</h2>
+                <table class="TAMS-table pending-timecards__table">
+            <caption>Pending employee timecards</caption>
+            <thead><tr><th scope="col">Employee</th><th scope="col">Period</th><th scope="col">Hours</th><th scope="col">Submitted</th><th scope="col">Status</th><th scope="col">Review</th></tr></thead>
+            <tbody><tr><td colspan="6">No timecards are awaiting approval.</td></tr></tbody>
+            </table><a class="TAMS-button TAMS-button--secondary" href="timecard_review.html">Open Timecard Review Template</a>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
