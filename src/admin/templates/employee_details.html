@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Employee Details | TAMS</title>
+
+    <link rel="stylesheet" href="../static/admin/employee_details/styles.css">
+    
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: employee-details__*. -->
+</head>
+<body class="TAMS-app page-employee-details" data-page="employee_details">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Admin Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="admin_dashboard.html">Admin Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="employee_list.html">Employee Accounts</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="roles_permissions.html">Roles &amp; Permissions</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="account_status_management.html">Account Status</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Employee Details</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading employee-details__heading" aria-labelledby="employee-details-title">
+                <h1 class="TAMS-page-heading__title" id="employee-details-title">Employee Details</h1>
+                <p class="TAMS-page-heading__description">Review the HR-managed account record of a selected employee.</p>
+            </section>
+            <!-- Employee Account Details section -->
+            <section class="TAMS-card employee-details__record" aria-labelledby="employee-details-record-title">
+                <h2 class="TAMS-card__title" id="employee-details-record-title">Employee Account Details</h2>
+                <dl class="employee-details__details">
+            <div class="employee-details__detail"><dt>Employee ID</dt><dd>Select an account</dd></div>
+            <div class="employee-details__detail"><dt>Full name</dt><dd>Not available</dd></div>
+            <div class="employee-details__detail"><dt>Username</dt><dd>Not available</dd></div>
+            <div class="employee-details__detail"><dt>Corporate email</dt><dd>Not available</dd></div>
+            <div class="employee-details__detail"><dt>Employment type</dt><dd>Not available</dd></div>
+            <div class="employee-details__detail"><dt>Department</dt><dd>Not available</dd></div>
+            <div class="employee-details__detail"><dt>Assigned manager</dt><dd>Not available</dd></div>
+            <div class="employee-details__detail"><dt>TAMS role</dt><dd>Not available</dd></div>
+            <div class="employee-details__detail"><dt>Account status</dt><dd>Not available</dd></div>
+            <div class="employee-details__detail"><dt>First login completed</dt><dd>Not available</dd></div>
+            </dl><div class="employee-details__actions"><a class="TAMS-button TAMS-button--secondary" href="employee_edit.html">Edit Employee</a> <a class="TAMS-button TAMS-button--secondary" href="account_status_management.html">Account Status</a> <a class="TAMS-button TAMS-button--secondary" href="employee_list.html">Back to Employees</a></div><p>Passwords and password hashes must never be displayed in this view.</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

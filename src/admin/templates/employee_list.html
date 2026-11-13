@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Employee Accounts | TAMS</title>
+
+    <link rel="stylesheet" href="../static/admin/employee_list/styles.css">
+    
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: employee-list__*. -->
+</head>
+<body class="TAMS-app page-employee-list" data-page="employee_list">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Admin Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="admin_dashboard.html">Admin Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="employee_list.html" aria-current="page">Employee Accounts</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="roles_permissions.html">Roles &amp; Permissions</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="account_status_management.html">Account Status</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Employee Accounts</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading employee-list__heading" aria-labelledby="employee-list-title">
+                <h1 class="TAMS-page-heading__title" id="employee-list-title">Employee Accounts</h1>
+                <p class="TAMS-page-heading__description">Search, view, and maintain authorized employee account records.</p>
+            </section>
+            <!-- Employee Management section -->
+            <section class="TAMS-card employee-list__actions" aria-labelledby="employee-list-actions-title">
+                <h2 class="TAMS-card__title" id="employee-list-actions-title">Employee Management</h2>
+                <a class="TAMS-button TAMS-button--primary" href="employee_create.html">Create New Employee</a>
+            </section>
+            <!-- Search Employee Accounts section -->
+            <section class="TAMS-card employee-list__filters" aria-labelledby="employee-list-filters-title">
+                <h2 class="TAMS-card__title" id="employee-list-filters-title">Search Employee Accounts</h2>
+
+            
+            <form class="TAMS-form employee-list__form" method="get" action="">
+            <div class="TAMS-form__field employee-list__search-field">
+            <label class="TAMS-form__label" for="employee-list-search">Search Accounts</label>
+            <input class="TAMS-form__input" type="search" id="employee-list-search" name="search" placeholder="Employee name, email, username, or ID">
+            </div><div class="TAMS-form__field employee-list__status-field">
+            <label class="TAMS-form__label" for="employee-list-status">Account Status</label>
+            <select class="TAMS-form__input" id="employee-list-status" name="status">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="suspended">Suspended</option>
+            <option value="deactivated">Deactivated</option>
+            </select>
+            </div><div class="TAMS-form__field employee-list__role-field">
+            <label class="TAMS-form__label" for="employee-list-role">Role</label>
+            <select class="TAMS-form__input" id="employee-list-role" name="role">
+            <option value="all">All roles</option>
+            <option value="employee">Employee</option>
+            <option value="manager">Manager</option>
+            <option value="admin">Admin</option>
+            </select>
+            </div>
+            <div class="TAMS-form__actions">
+            <button class="TAMS-button TAMS-button--primary" type="submit">Find Employees</button>
+            </div>
+            </form>
+            <div class="TAMS-alert TAMS-alert--error employee-list__error" role="alert" id="employee-list-error" hidden>Unable to complete this action. Check the form and try again.</div>
+            <div class="TAMS-alert TAMS-alert--success employee-list__success" role="status" id="employee-list-success" hidden>Changes saved.</div>
+            </section>
+            <!-- Employee Directory section -->
+            <section class="TAMS-card employee-list__records" aria-labelledby="employee-list-records-title">
+                <h2 class="TAMS-card__title" id="employee-list-records-title">Employee Directory</h2>
+                <table class="TAMS-table employee-list__table">
+            <caption>All employee accounts</caption>
+            <thead><tr><th scope="col">Employee ID</th><th scope="col">Name</th><th scope="col">Corporate email</th><th scope="col">Role</th><th scope="col">Manager</th><th scope="col">Status</th><th scope="col">Details</th></tr></thead>
+            <tbody><tr><td colspan="7">No employee accounts match your search.</td></tr></tbody>
+            </table><a class="TAMS-button TAMS-button--secondary" href="employee_details.html">Open Employee Details Template</a>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

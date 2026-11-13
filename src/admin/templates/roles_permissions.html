@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Roles and Permissions | TAMS</title>
+
+    <link rel="stylesheet" href="../static/admin/roles_permissions/styles.css">
+    
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: roles-permissions__*. -->
+</head>
+<body class="TAMS-app page-roles-permissions" data-page="roles_permissions">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Admin Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="admin_dashboard.html">Admin Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="employee_list.html">Employee Accounts</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="roles_permissions.html" aria-current="page">Roles &amp; Permissions</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="account_status_management.html">Account Status</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Roles and Permissions</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading roles-permissions__heading" aria-labelledby="roles-permissions-title">
+                <h1 class="TAMS-page-heading__title" id="roles-permissions-title">Roles and Permissions</h1>
+                <p class="TAMS-page-heading__description">Inspect role capabilities and manage authorized permission changes.</p>
+            </section>
+            <!-- Role Permissions Overview section -->
+            <section class="TAMS-card roles-permissions__matrix" aria-labelledby="roles-permissions-matrix-title">
+                <h2 class="TAMS-card__title" id="roles-permissions-matrix-title">Role Permissions Overview</h2>
+                <table class="TAMS-table roles-permissions__table"><caption>Illustrative permissions, confirm with backend role rules</caption><thead><tr><th scope="col">Capability</th><th scope="col">Employee</th><th scope="col">Manager</th><th scope="col">Admin</th></tr></thead><tbody><tr><th scope="row">View own timecards</th><td>Yes</td><td>Own records</td><td>Admin configurable</td></tr><tr><th scope="row">Approve assigned timecards</th><td>No</td><td>Assigned team</td><td>Admin configurable</td></tr><tr><th scope="row">Create employee accounts</th><td>No</td><td>No</td><td>Admin configurable</td></tr><tr><th scope="row">Manage role assignments</th><td>No</td><td>No</td><td>Restricted</td></tr></tbody></table><p>This table is an illustrative UI skeleton, not a validated security matrix. The final permissions must be defined by the team and enforced on the server.</p>
+            </section>
+            <!-- Modify Permission Assignment section -->
+            <section class="TAMS-card roles-permissions__form-panel" aria-labelledby="roles-permissions-form-panel-title">
+                <h2 class="TAMS-card__title" id="roles-permissions-form-panel-title">Modify Permission Assignment</h2>
+                <p class="roles-permissions__guidance">Only privileged admins can make these changes. Prevent accidental administrator lockout and audit changes.</p>
+            <!-- Django: add {% csrf_token %}; validate and authorize all actions on the server. -->
+            <form class="TAMS-form roles-permissions__form" method="post" action="">
+            <div class="TAMS-form__field roles-permissions__role-field">
+            <label class="TAMS-form__label" for="roles-permissions-role">Role to Configure</label>
+            <select class="TAMS-form__input" id="roles-permissions-role" name="role">
+            <option value="employee">Employee</option>
+            <option value="manager">Manager</option>
+            <option value="admin">Admin</option>
+            </select>
+            </div><div class="TAMS-form__field roles-permissions__permission-field">
+            <label class="TAMS-form__label" for="roles-permissions-permission">Permission</label>
+            <select class="TAMS-form__input" id="roles-permissions-permission" name="permission">
+            <option value="view">View records</option>
+            <option value="approve">Approve assigned records</option>
+            <option value="accounts">Manage employee accounts</option>
+            <option value="delegations">Manage delegations</option>
+            </select>
+            </div><div class="TAMS-form__field roles-permissions__decision-field">
+            <label class="TAMS-form__label" for="roles-permissions-decision">Change</label>
+            <select class="TAMS-form__input" id="roles-permissions-decision" name="decision">
+            <option value="grant">Grant</option>
+            <option value="revoke">Revoke</option>
+            </select>
+            </div><div class="TAMS-form__field roles-permissions__reason-field">
+            <label class="TAMS-form__label" for="roles-permissions-reason">Reason</label>
+            <textarea class="TAMS-form__input" id="roles-permissions-reason" name="reason" required rows="4" placeholder=""></textarea>
+            </div>
+            <div class="TAMS-form__actions">
+            <button class="TAMS-button TAMS-button--primary" type="submit">Save Permission Change</button>
+            </div>
+            </form>
+            <div class="TAMS-alert TAMS-alert--error roles-permissions__error" role="alert" id="roles-permissions-error" hidden>Unable to complete this action. Check the form and try again.</div>
+            <div class="TAMS-alert TAMS-alert--success roles-permissions__success" role="status" id="roles-permissions-success" hidden>Changes saved.</div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

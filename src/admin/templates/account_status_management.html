@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Account Status Management | TAMS</title>
+
+    <link rel="stylesheet" href="../static/admin/account_status_management/styles.css">
+    
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: account-status-management__*. -->
+</head>
+<body class="TAMS-app page-account-status-management" data-page="account_status_management">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Admin Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="admin_dashboard.html">Admin Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="employee_list.html">Employee Accounts</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="roles_permissions.html">Roles &amp; Permissions</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="account_status_management.html" aria-current="page">Account Status</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Account Status Management</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading account-status-management__heading" aria-labelledby="account-status-management-title">
+                <h1 class="TAMS-page-heading__title" id="account-status-management-title">Account Status Management</h1>
+                <p class="TAMS-page-heading__description">Activate, suspend, or deactivate an employee account.</p>
+            </section>
+            <!-- Current Account Status section -->
+            <section class="TAMS-card account-status-management__current" aria-labelledby="account-status-management-current-title">
+                <h2 class="TAMS-card__title" id="account-status-management-current-title">Current Account Status</h2>
+                <dl class="account-status-management__details">
+            <div class="account-status-management__detail"><dt>Employee</dt><dd>Select an employee</dd></div>
+            <div class="account-status-management__detail"><dt>Current status</dt><dd>Not available</dd></div>
+            <div class="account-status-management__detail"><dt>Last status change</dt><dd>Not available</dd></div>
+            </dl>
+            </section>
+            <!-- Change Account Status section -->
+            <section class="TAMS-card account-status-management__change" aria-labelledby="account-status-management-change-title">
+                <h2 class="TAMS-card__title" id="account-status-management-change-title">Change Account Status</h2>
+                <p class="account-status-management__guidance">Before applying, require an explicit confirmation, audit the change, and revoke sessions where appropriate. Prevent accidental self-lockout.</p>
+            <!-- Django: add {% csrf_token %}; validate and authorize all actions on the server. -->
+            <form class="TAMS-form account-status-management__form" method="post" action="">
+            <div class="TAMS-form__field account-status-management__employee-id-field">
+            <label class="TAMS-form__label" for="account-status-management-employee-id">Employee ID</label>
+            <input class="TAMS-form__input" type="text" id="account-status-management-employee-id" name="employee_id" required placeholder="Select an employee account">
+            </div><div class="TAMS-form__field account-status-management__new-status-field">
+            <label class="TAMS-form__label" for="account-status-management-new-status">New Account Status</label>
+            <select class="TAMS-form__input" id="account-status-management-new-status" name="new_status" required>
+            <option value="">Select a status</option>
+            <option value="active">Activate</option>
+            <option value="suspended">Suspend</option>
+            <option value="deactivated">Deactivate</option>
+            </select>
+            </div><div class="TAMS-form__field account-status-management__reason-field">
+            <label class="TAMS-form__label" for="account-status-management-reason">Reason for Status Change</label>
+            <textarea class="TAMS-form__input" id="account-status-management-reason" name="reason" required rows="4" placeholder=""></textarea>
+            </div>
+            <div class="TAMS-form__actions">
+            <button class="TAMS-button TAMS-button--primary" type="submit">Confirm Status Change</button>
+            <a class="TAMS-button TAMS-button--secondary" href="employee_details.html">Cancel</a>
+            </div>
+            </form>
+            <div class="TAMS-alert TAMS-alert--error account-status-management__error" role="alert" id="account-status-management-error" hidden>Unable to complete this action. Check the form and try again.</div>
+            <div class="TAMS-alert TAMS-alert--success account-status-management__success" role="status" id="account-status-management-success" hidden>Changes saved.</div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
