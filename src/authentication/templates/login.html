@@ -1,59 +1,50 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TAMS, Time Approval Management System.">
-    <title>Login | TAMS</title>
-<!-- Reference to the styles.css -->
-<!-- Styles.css consists of the entire formating information -->
-    <link rel="stylesheet" href="../static/css/styles.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="TAMS, Time Approval Management System." name="description"/>
+<title>Login | TAMS</title>
+<link href="../static/authentication/login/styles.css" rel="stylesheet"/>
+    <script defer src="../static/authentication/js/event_handlers.js"></script>
+    <script defer src="../static/authentication/js/event_registration.js"></script>
 </head>
 <body class="TAMS-app page-login" data-page="login">
-    
-    <div class="TAMS-layout TAMS-layout--auth">
-        <!-- Shared authentication header. -->
-        <header class="TAMS-header TAMS-header--auth">
-            <a class="TAMS-header__brand" href="login.html" aria-label="TAMS login">TAMS</a>
-            <span class="TAMS-header__app-name">Time Approval Management System</span>
-        </header>
-        <!-- Login Page main content -->
-        <main class="TAMS-main TAMS-main--auth" id="main-content">
-            <section class="TAMS-card login__panel">
-                <!-- Login Page specific header -->
-                <div class="TAMS-page-heading login__heading">
-                    <h1 class="TAMS-page-heading__title" id="login-title">Login</h1>
-                    <p class="TAMS-page-heading__description">Secure access to your TAMS account.</p>
-                </div>
-                
-                <!-- Login form: Email, Password, Forgot Password Link, Sign In button -->
-                <form class="TAMS-form login__form" method="post" action="">
-                    <!-- Email Field -->
-                    <div class="TAMS-form__field login__username-field">
-                        <label class="TAMS-form__label" for="login-username">Username or Email</label>
-                        <input class="TAMS-form__input" id="login-username" name="username" type="text" placeholder="Enter username or email" required maxlength="254">
-                    </div>
-                    <!-- Password Field -->
-                    <div class="TAMS-form__field login__password-field">
-                        <label class="TAMS-form__label" for="login-password">Password</label>
-                        <input class="TAMS-form__input" id="login-password" name="password" type="password" placeholder="Enter password" required>
-                        <button class="TAMS-button TAMS-button--secondary login__password-toggle" type="button" data-password-target="login-password" aria-controls="login-password" aria-pressed="false">Show password</button>
-                    </div>
-                    <!-- Error message hidden till login fails -->
-                    <div class="TAMS-alert TAMS-alert--error login__error" id="login-error" role="alert" hidden>Unable to sign in. Check your details and try again.</div>
-                    <!-- Sign In button -->
-                    <div class="TAMS-form__actions login__actions">
-                        <button class="TAMS-button TAMS-button--primary" type="submit">Sign In</button>
-                    </div>
-                </form>
-                <!-- Password recovery link -->
-                <p class="login__recovery-link"><a href="forgot_password.html">Forgot password?</a></p>
-            </section>
-        </main>
-
-        <footer class="TAMS-footer TAMS-footer--auth">
-            <small>TAMS | Time Approval Management System</small>
-        </footer>
-    </div>
+<div class="TAMS-layout TAMS-layout--auth">
+<!-- Shared authentication header. Keep this consistent across all six pages. -->
+<header class="TAMS-header TAMS-header--auth">
+<a aria-label="TAMS login" class="TAMS-header__brand" href="login.html">TAMS</a>
+<span class="TAMS-header__app-name">Time Approval Management System</span>
+</header>
+<main class="TAMS-main TAMS-main--auth" id="main-content">
+<section aria-labelledby="login-title" class="TAMS-card login__panel">
+<div class="TAMS-page-heading login__heading">
+<h1 class="TAMS-page-heading__title" id="login-title">Login</h1>
+<p class="TAMS-page-heading__description">Secure access to your TAMS account.</p>
+</div>
+<form action="" class="TAMS-form login__form" method="post">
+<div class="TAMS-form__field login__username-field">
+<label class="TAMS-form__label" for="login-username">Username or Email</label>
+<input class="TAMS-form__input" id="login-username" maxlength="254" name="username" placeholder="Enter username or email" required="" type="text"/>
+</div>
+<div class="TAMS-form__field login__password-field">
+<label class="TAMS-form__label" for="login-password">Password</label>
+<input class="TAMS-form__input" id="login-password" name="password" placeholder="Enter password" required="" type="password"/>
+<!-- JS phase: bind button to password visibility and aria-pressed state. -->
+<button aria-controls="login-password" aria-pressed="false" class="TAMS-button TAMS-button--secondary login__password-toggle" data-password-target="login-password" type="button">Show password</button>
+</div>
+<div class="TAMS-alert TAMS-alert--error login__error" hidden="" id="login-error" role="alert">Unable to sign in. Check your details and try again.</div>
+<div class="TAMS-form__actions login__actions">
+<button class="TAMS-button TAMS-button--primary" type="submit">Sign In</button>
+</div>
+</form>
+<p class="login__recovery-link"><a href="forgot_password.html">Forgot password?</a></p>
+</section>
+</main>
+<footer class="TAMS-footer TAMS-footer--auth">
+<small>TAMS | Time Approval Management System</small>
+</footer>
+</div>
 </body>
 </html>
