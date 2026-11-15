@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Time Tracking | TAMS</title>
+
+    <link rel="stylesheet" href="../static/employee/time_tracking/styles.css">
+    
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: time-tracking__*. -->
+</head>
+<body class="TAMS-app page-time-tracking" data-page="time_tracking">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Employee Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="timecard_list.html">My Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="time_tracking.html" aria-current="page">Track Time</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_dashboard.html">Leave</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_balance.html">Leave Balance</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Time Tracking</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Time Tracking main content -->
+            <section class="TAMS-page-heading time-tracking__heading" aria-labelledby="time-tracking-title">
+                <h1 class="TAMS-page-heading__title" id="time-tracking-title">Time Tracking</h1>
+                <p class="TAMS-page-heading__description">Record shift start and end events and review tracked hours.</p>
+            </section>
+            <!-- Current shift status and elapsed time -->
+            <section class="TAMS-card time-tracking__timer" aria-labelledby="time-tracking-timer-title">
+                <h2 class="TAMS-card__title" id="time-tracking-timer-title">Current Shift</h2>
+                <!-- Display the current shift state and elapsed time -->
+                <p class="time-tracking__state">Shift status: <strong>Not running</strong></p>
+                <p class="time-tracking__clock"><output id="time-tracking-elapsed-time" aria-live="off">00:00:00</output></p>
+                <p>Elapsed time will be synchronized to server timestamps when integrated.</p>
+                <!-- Start and end shift controls -->
+                <div class="time-tracking__controls">
+                    <form class="TAMS-form time-tracking__start-form" method="post" action="">
+                        <!-- Django: {% csrf_token %}; action=start; reject overlapping active shifts. -->
+                        <input type="hidden" name="intent" value="start">
+                        <button class="TAMS-button TAMS-button--primary" type="submit">Start Shift</button>
+                    </form>
+                    <form class="TAMS-form time-tracking__end-form" method="post" action="">
+                        <!-- Django: {% csrf_token %}; action=stop; use server time. -->
+                        <input type="hidden" name="intent" value="stop">
+                        <button class="TAMS-button TAMS-button--secondary" type="submit">End Shift</button>
+                    </form>
+                </div>
+            </section>
+            <!-- Recent time entries table -->
+            <section class="TAMS-card time-tracking__recent" aria-labelledby="time-tracking-recent-title">
+                <h2 class="TAMS-card__title" id="time-tracking-recent-title">Recent Time Entries</h2>
+                <table class="TAMS-table time-tracking__table">
+            <caption>Recent work sessions</caption>
+            <thead><tr><th scope="col">Date</th><th scope="col">Start</th><th scope="col">End</th><th scope="col">Breaks</th><th scope="col">Hours</th><th scope="col">Status</th><th scope="col">Details</th></tr></thead>
+            <tbody><tr><td colspan="7">No time entries available.</td></tr></tbody>
+            </table><a class="TAMS-button TAMS-button--secondary" href="time_entry_details.html">View Time Entry Details</a>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

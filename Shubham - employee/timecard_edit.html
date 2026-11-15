@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Edit Timecard | TAMS</title>
+
+    <link rel="stylesheet" href="../static/employee/timecard_edit/styles.css">
+
+</head>
+<body class="TAMS-app page-timecard-edit" data-page="timecard_edit">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Employee Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="timecard_list.html">My Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="time_tracking.html">Track Time</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_dashboard.html">Leave</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_balance.html">Leave Balance</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Edit Timecard</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading timecard-edit__heading" aria-labelledby="timecard-edit-title">
+                <h1 class="TAMS-page-heading__title" id="timecard-edit-title">Edit Timecard</h1>
+                <p class="TAMS-page-heading__description">Correct an editable weekly timecard while keeping approval history intact.</p>
+            </section>
+            <!-- Edit Draft or Rejected Timecard section -->
+            <section class="TAMS-card timecard-edit__edit" aria-labelledby="timecard-edit-edit-title">
+                <h2 class="TAMS-card__title" id="timecard-edit-edit-title">Edit Draft or Rejected Timecard</h2>
+                <p class="timecard-edit__guidance">Only the timecard owner may edit eligible draft or rejected records. Submitted and approved records are locked.</p>
+            <!-- Django: add {% csrf_token %}; validate and authorize all actions on the server. -->
+            <form class="TAMS-form timecard-edit__form" method="post" action="">
+            <div class="TAMS-form__field timecard-edit__timecard-id-field">
+            <label class="TAMS-form__label" for="timecard-edit-timecard-id">Timecard Reference</label>
+            <input class="TAMS-form__input" type="text" id="timecard-edit-timecard-id" name="timecard_id" readonly placeholder="Selected timecard">
+            </div><div class="TAMS-form__field timecard-edit__period-start-field">
+            <label class="TAMS-form__label" for="timecard-edit-period-start">Pay Period Start</label>
+            <input class="TAMS-form__input" type="date" id="timecard-edit-period-start" name="period_start" required readonly>
+            </div><div class="TAMS-form__field timecard-edit__correction-reason-field">
+            <label class="TAMS-form__label" for="timecard-edit-correction-reason">Reason for Correction</label>
+            <textarea class="TAMS-form__input" id="timecard-edit-correction-reason" name="correction_reason" rows="4" placeholder="Explain changes to a rejected timecard"></textarea>
+            </div><fieldset class="timecard-edit__entries"><legend>Edit Weekly Hours</legend><table class="TAMS-table timecard-edit__entry-table"><caption>Change the editable hours and notes. Existing dates and approved leave are read-only.</caption><thead><tr><th scope="col">Day</th><th scope="col">Date</th><th scope="col">Hours Worked</th><th scope="col">Approved Leave</th><th scope="col">Notes</th></tr></thead><tbody><tr><th scope="row">Day 1</th><td><input class="TAMS-form__input" id="timecard-edit-work-date-1" name="work_date_1" type="date" readonly aria-label="Day 1 date"></td><td><input class="TAMS-form__input" id="timecard-edit-work-hours-1" name="work_hours_1" type="number" min="0" max="24" step="0.25" aria-label="Day 1 worked hours"></td><td><input class="TAMS-form__input" id="timecard-edit-leave-hours-1" name="leave_hours_1" type="number" min="0" max="24" step="0.25" readonly aria-label="Day 1 approved leave hours"></td><td><input class="TAMS-form__input" id="timecard-edit-notes-1" name="entry_notes_1" type="text" maxlength="200" aria-label="Day 1 notes"></td></tr><tr><th scope="row">Day 2</th><td><input class="TAMS-form__input" id="timecard-edit-work-date-2" name="work_date_2" type="date" readonly aria-label="Day 2 date"></td><td><input class="TAMS-form__input" id="timecard-edit-work-hours-2" name="work_hours_2" type="number" min="0" max="24" step="0.25" aria-label="Day 2 worked hours"></td><td><input class="TAMS-form__input" id="timecard-edit-leave-hours-2" name="leave_hours_2" type="number" min="0" max="24" step="0.25" readonly aria-label="Day 2 approved leave hours"></td><td><input class="TAMS-form__input" id="timecard-edit-notes-2" name="entry_notes_2" type="text" maxlength="200" aria-label="Day 2 notes"></td></tr><tr><th scope="row">Day 3</th><td><input class="TAMS-form__input" id="timecard-edit-work-date-3" name="work_date_3" type="date" readonly aria-label="Day 3 date"></td><td><input class="TAMS-form__input" id="timecard-edit-work-hours-3" name="work_hours_3" type="number" min="0" max="24" step="0.25" aria-label="Day 3 worked hours"></td><td><input class="TAMS-form__input" id="timecard-edit-leave-hours-3" name="leave_hours_3" type="number" min="0" max="24" step="0.25" readonly aria-label="Day 3 approved leave hours"></td><td><input class="TAMS-form__input" id="timecard-edit-notes-3" name="entry_notes_3" type="text" maxlength="200" aria-label="Day 3 notes"></td></tr><tr><th scope="row">Day 4</th><td><input class="TAMS-form__input" id="timecard-edit-work-date-4" name="work_date_4" type="date" readonly aria-label="Day 4 date"></td><td><input class="TAMS-form__input" id="timecard-edit-work-hours-4" name="work_hours_4" type="number" min="0" max="24" step="0.25" aria-label="Day 4 worked hours"></td><td><input class="TAMS-form__input" id="timecard-edit-leave-hours-4" name="leave_hours_4" type="number" min="0" max="24" step="0.25" readonly aria-label="Day 4 approved leave hours"></td><td><input class="TAMS-form__input" id="timecard-edit-notes-4" name="entry_notes_4" type="text" maxlength="200" aria-label="Day 4 notes"></td></tr><tr><th scope="row">Day 5</th><td><input class="TAMS-form__input" id="timecard-edit-work-date-5" name="work_date_5" type="date" readonly aria-label="Day 5 date"></td><td><input class="TAMS-form__input" id="timecard-edit-work-hours-5" name="work_hours_5" type="number" min="0" max="24" step="0.25" aria-label="Day 5 worked hours"></td><td><input class="TAMS-form__input" id="timecard-edit-leave-hours-5" name="leave_hours_5" type="number" min="0" max="24" step="0.25" readonly aria-label="Day 5 approved leave hours"></td><td><input class="TAMS-form__input" id="timecard-edit-notes-5" name="entry_notes_5" type="text" maxlength="200" aria-label="Day 5 notes"></td></tr><tr><th scope="row">Day 6</th><td><input class="TAMS-form__input" id="timecard-edit-work-date-6" name="work_date_6" type="date" readonly aria-label="Day 6 date"></td><td><input class="TAMS-form__input" id="timecard-edit-work-hours-6" name="work_hours_6" type="number" min="0" max="24" step="0.25" aria-label="Day 6 worked hours"></td><td><input class="TAMS-form__input" id="timecard-edit-leave-hours-6" name="leave_hours_6" type="number" min="0" max="24" step="0.25" readonly aria-label="Day 6 approved leave hours"></td><td><input class="TAMS-form__input" id="timecard-edit-notes-6" name="entry_notes_6" type="text" maxlength="200" aria-label="Day 6 notes"></td></tr><tr><th scope="row">Day 7</th><td><input class="TAMS-form__input" id="timecard-edit-work-date-7" name="work_date_7" type="date" readonly aria-label="Day 7 date"></td><td><input class="TAMS-form__input" id="timecard-edit-work-hours-7" name="work_hours_7" type="number" min="0" max="24" step="0.25" aria-label="Day 7 worked hours"></td><td><input class="TAMS-form__input" id="timecard-edit-leave-hours-7" name="leave_hours_7" type="number" min="0" max="24" step="0.25" readonly aria-label="Day 7 approved leave hours"></td><td><input class="TAMS-form__input" id="timecard-edit-notes-7" name="entry_notes_7" type="text" maxlength="200" aria-label="Day 7 notes"></td></tr></tbody></table></fieldset>
+            <div class="TAMS-form__actions">
+            <button class="TAMS-button TAMS-button--primary" type="submit" name="intent" value="draft">Save Draft</button>
+            <button class="TAMS-button TAMS-button--primary" type="submit" name="intent" value="resubmit">Resubmit for Approval</button>
+            <a class="TAMS-button TAMS-button--secondary" href="timecard_details.html">Cancel</a>
+            </div>
+            </form>
+            <div class="TAMS-alert TAMS-alert--error timecard-edit__error" role="alert" id="timecard-edit-error" hidden>Unable to complete this action. Check the form and try again.</div>
+            <div class="TAMS-alert TAMS-alert--success timecard-edit__success" role="status" id="timecard-edit-success" hidden>Changes saved.</div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
