@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Pending Time Entries | TAMS</title>
+
+    <link rel="stylesheet" href="../static/manager/pending_time_entries/styles.css">
+<!-- File names and form names: snake_case; IDs: kebab-case; page CSS: pending-time-entries__*. -->
+</head>
+<body class="TAMS-app page-pending-time-entries" data-page="pending_time_entries">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Manager Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="manager_dashboard.html">Manager Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_timecards.html">Pending Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_time_entries.html" aria-current="page">Pending Time Entries</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_leave_requests.html">Leave Approvals</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="reports.html">Team Reports</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="assigned_employees.html">Team Members</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="delegation_management.html">Delegations</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Pending Time Entries</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading pending-time-entries__heading" aria-labelledby="pending-time-entries-title">
+                <h1 class="TAMS-page-heading__title" id="pending-time-entries-title">Pending Time Entries</h1>
+                <p class="TAMS-page-heading__description">Inspect work-session entries submitted by your assigned team.</p>
+            </section>
+            <!-- Filter Time Entries section -->
+            <section class="TAMS-card pending-time-entries__filters" aria-labelledby="pending-time-entries-filters-title">
+                <h2 class="TAMS-card__title" id="pending-time-entries-filters-title">Filter Time Entries</h2>
+
+            
+            <form class="TAMS-form pending-time-entries__form" method="get" action="">
+            <div class="TAMS-form__field pending-time-entries__employee-field">
+            <label class="TAMS-form__label" for="pending-time-entries-employee">Employee</label>
+            <input class="TAMS-form__input" type="search" id="pending-time-entries-employee" name="employee">
+            </div><div class="TAMS-form__field pending-time-entries__date-from-field">
+            <label class="TAMS-form__label" for="pending-time-entries-date-from">From</label>
+            <input class="TAMS-form__input" type="date" id="pending-time-entries-date-from" name="date_from">
+            </div><div class="TAMS-form__field pending-time-entries__date-to-field">
+            <label class="TAMS-form__label" for="pending-time-entries-date-to">To</label>
+            <input class="TAMS-form__input" type="date" id="pending-time-entries-date-to" name="date_to">
+            </div>
+            <div class="TAMS-form__actions">
+            <button class="TAMS-button TAMS-button--primary" type="submit">Apply Filters</button>
+            </div>
+            </form>
+            <div class="TAMS-alert TAMS-alert--error pending-time-entries__error" role="alert" id="pending-time-entries-error" hidden>Unable to complete this action. Check the form and try again.</div>
+            <div class="TAMS-alert TAMS-alert--success pending-time-entries__success" role="status" id="pending-time-entries-success" hidden>Changes saved.</div>
+            </section>
+            <!-- Time Entries Awaiting Review section -->
+            <section class="TAMS-card pending-time-entries__queue" aria-labelledby="pending-time-entries-queue-title">
+                <h2 class="TAMS-card__title" id="pending-time-entries-queue-title">Time Entries Awaiting Review</h2>
+                <table class="TAMS-table pending-time-entries__table">
+            <caption>Pending time records</caption>
+            <thead><tr><th scope="col">Employee</th><th scope="col">Work date</th><th scope="col">Start</th><th scope="col">End</th><th scope="col">Duration</th><th scope="col">Status</th><th scope="col">Review</th></tr></thead>
+            <tbody><tr><td colspan="7">No time entries are awaiting approval.</td></tr></tbody>
+            </table><a class="TAMS-button TAMS-button--secondary" href="time_entry_review.html">Open Time Entry Review Template</a>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
