@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Timecard Details | TAMS</title>
+
+    <link rel="stylesheet" href="../static/employee/timecard_details/styles.css">
+    
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: timecard-details__*. -->
+</head>
+<body class="TAMS-app page-timecard-details" data-page="timecard_details">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Employee Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="timecard_list.html">My Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="time_tracking.html">Track Time</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_dashboard.html">Leave</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_balance.html">Leave Balance</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Timecard Details</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading timecard-details__heading" aria-labelledby="timecard-details-title">
+                <h1 class="TAMS-page-heading__title" id="timecard-details-title">Timecard Details</h1>
+                <p class="TAMS-page-heading__description">Inspect the recorded hours, current status, and manager decision.</p>
+            </section>
+            <!-- Timecard Details section -->
+            <section class="TAMS-card timecard-details__record" aria-labelledby="timecard-details-record-title">
+                <h2 class="TAMS-card__title" id="timecard-details-record-title">Timecard Details</h2>
+                <dl class="timecard-details__details">
+            <div class="timecard-details__detail"><dt>Timecard ID</dt><dd>Select a timecard</dd></div>
+            <div class="timecard-details__detail"><dt>Pay period</dt><dd>Not available</dd></div>
+            <div class="timecard-details__detail"><dt>Status</dt><dd>Not available</dd></div>
+            <div class="timecard-details__detail"><dt>Total work hours</dt><dd>Not calculated</dd></div>
+            <div class="timecard-details__detail"><dt>Approved leave hours</dt><dd>Not calculated</dd></div>
+            <div class="timecard-details__detail"><dt>Submitted on</dt><dd>Not available</dd></div>
+            <div class="timecard-details__detail"><dt>Approver</dt><dd>Not available</dd></div>
+            <div class="timecard-details__detail"><dt>Manager feedback</dt><dd>No feedback available</dd></div>
+            </dl><table class="TAMS-table timecard-details__table">
+            <caption>Timecard breakdown</caption>
+            <thead><tr><th scope="col">Date</th><th scope="col">Hours worked</th><th scope="col">Leave hours</th><th scope="col">Category</th><th scope="col">Notes</th></tr></thead>
+            <tbody><tr><td colspan="5">No timecard selected.</td></tr></tbody>
+            </table><p><a class="TAMS-button TAMS-button--secondary" href="timecard_list.html">Back to My Timecards</a> <a class="TAMS-button TAMS-button--secondary" href="timecard_edit.html">Edit if Eligible</a></p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

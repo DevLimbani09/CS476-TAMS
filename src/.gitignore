@@ -1,7 +1,7 @@
 admin/
 authentication/
 config/
-/employee/
+# /employee/
 /manager/
 /shared/
 system/templates
