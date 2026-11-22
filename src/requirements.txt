@@ -1,0 +1,15 @@
+# TAMS - Time Approval Management System
+# Python dependencies for the current Django application and Render deployment.
+
+
+# Django version used to generate the current project.
+Django==5.2.19
+
+# Production WSGI server for Render.
+gunicorn==27.0.1
+
+# Required by shared.models.UserProfile.profile_picture (ImageField).
+Pillow==13.0.0
+
+# Production static file serving (requires settings.py configuration).
+whitenoise[brotli]==6.12.0
