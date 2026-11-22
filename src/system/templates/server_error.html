@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>500 Server Error | TAMS</title>
+    <link rel="stylesheet" href="../static/system/server_error/styles.css">
+    <!-- Django later: wire the 500 error handler; do not expose private exception details. -->
+</head>
+<body class="TAMS-app page-server-error" data-page="server_error">
+    <!-- Public-friendly page: do not assume the visitor is authenticated. -->
+    <div class="TAMS-layout TAMS-layout--system">
+        <header class="TAMS-header TAMS-header--system">
+            <a class="TAMS-header__brand" href="../authentication/login.html">TAMS</a>
+            <span class="TAMS-header__app-name">Time Approval Management System</span>
+        </header>
+        <main class="TAMS-main TAMS-main--system" id="main-content">
+            <section class="TAMS-card server-error__panel" aria-labelledby="server-error-title">
+                <p class="server-error__status-code">500</p>
+                <h1 id="server-error-title">Server Error</h1>
+                <p class="server-error__message">Something went wrong while processing your request.</p>
+                <p class="server-error__description">Please return to TAMS and try again later. If the problem continues, contact support.</p>
+                <div class="server-error__actions">
+                    <a class="TAMS-button TAMS-button--primary" href="../shared/dashboard.html">Go to Dashboard</a>
+                    <a class="TAMS-button TAMS-button--secondary" href="../authentication/login.html">Go to Login</a>
+                </div>
+            </section>
+        </main>
+        <footer class="TAMS-footer TAMS-footer--system"><small>TAMS | Time Approval Management System</small></footer>
+    </div>
+</body>
+</html>
