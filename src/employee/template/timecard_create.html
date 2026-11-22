@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="TAMS, Time Approval Management System." name="description"/>
+<title>Create Timecard | TAMS</title>
+<!-- CSS intentionally deferred. Keep shared TAMS-* classes stable across all pages. -->
+<link href="../static/employee/timecard_create/styles.css" rel="stylesheet"/>
+<!-- Django later: {% load static %} and {% static 'css/styles.css' %}. -->
+<!-- File names and form names: snake_case; IDs: kebab-case; page CSS: timecard-create__*. -->
+    <script defer src="../static/employee/js/event_handlers.js"></script>
+    <script defer src="../static/employee/js/event_registration.js"></script>
+</head>
+<body class="TAMS-app page-timecard-create" data-page="timecard_create">
+<!-- Shared sidebar structure. Content is role-aware when integrated with Django. -->
+<aside aria-label="Main navigation" class="TAMS-sidebar">
+<div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+<nav aria-label="Primary" class="TAMS-sidebar__nav">
+<ul class="TAMS-sidebar__list">
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+</ul>
+<!-- Django later: render role-specific navigation only for authenticated, authorized roles. -->
+<p class="TAMS-sidebar__section-title">Employee Tools</p>
+<ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="timecard_list.html">My Timecards</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="time_tracking.html">Track Time</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_dashboard.html">Leave</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_balance.html">Leave Balance</a></li>
+</ul>
+</nav>
+</aside>
+<div class="TAMS-layout">
+<!-- Shared header markup. Keep TAMS-header class names consistent. -->
+<header class="TAMS-header">
+<span class="TAMS-header__page-name">Create Timecard</span>
+<div class="TAMS-header__actions">
+<a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+<a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+</div>
+</header>
+<main class="TAMS-main" id="main-content">
+<section aria-labelledby="timecard-create-title" class="TAMS-page-heading timecard-create__heading">
+<h1 class="TAMS-page-heading__title" id="timecard-create-title">Create Timecard</h1>
+<p class="TAMS-page-heading__description">Record a week of working hours and submit the completed timecard for approval.</p>
+</section>
+<section aria-labelledby="timecard-create-entry-title" class="TAMS-card timecard-create__entry">
+<h2 class="TAMS-card__title" id="timecard-create-entry-title">Create Weekly Timecard</h2>
+<p class="timecard-create__guidance">Save as a draft or submit for manager review. Time totals and date checks are ultimately calculated on the server.</p>
+<!-- Django: add {% csrf_token %}; validate and authorize all actions on the server. -->
+<form action="" class="TAMS-form timecard-create__form" method="post">
+<div class="TAMS-form__field timecard-create__period-start-field">
+<label class="TAMS-form__label" for="timecard-create-period-start">Pay Period Start Date</label>
+<input class="TAMS-form__input" id="timecard-create-period-start" name="period_start" required="" type="date"/>
+</div><div class="TAMS-form__field timecard-create__period-end-field">
+<label class="TAMS-form__label" for="timecard-create-period-end">Pay Period End Date</label>
+<input class="TAMS-form__input" id="timecard-create-period-end" name="period_end" readonly="" required="" type="date"/>
+<p class="TAMS-form__help">The backend will calculate the end date from the selected pay-period start.</p>
+</div><fieldset class="timecard-create__entries"><legend>Weekly Hours and Leave</legend><table class="TAMS-table timecard-create__entry-table"><caption>Record daily hours worked and approved leave for the selected period</caption><thead><tr><th scope="col">Day</th><th scope="col">Date</th><th scope="col">Hours Worked</th><th scope="col">Leave Type</th><th scope="col">Leave Hours</th></tr></thead><tbody><tr><th scope="row">Day 1</th><td><input aria-label="Day 1 date" class="TAMS-form__input" id="timecard-create-work-date-1" name="work_date_1" type="date"/></td><td><input aria-label="Day 1 work hours" class="TAMS-form__input" id="timecard-create-work-hours-1" max="24" min="0" name="work_hours_1" step="0.25" type="number"/></td><td><select aria-label="Day 1 leave type" class="TAMS-form__input" id="timecard-create-leave-type-1" name="leave_type_1"><option value="">No leave</option><option value="vacation">Vacation</option><option value="sick">Sick</option><option value="planned_sick">Planned sick leave</option></select></td><td><input aria-label="Day 1 leave hours" class="TAMS-form__input" id="timecard-create-leave-hours-1" max="24" min="0" name="leave_hours_1" step="0.25" type="number"/></td></tr><tr><th scope="row">Day 2</th><td><input aria-label="Day 2 date" class="TAMS-form__input" id="timecard-create-work-date-2" name="work_date_2" type="date"/></td><td><input aria-label="Day 2 work hours" class="TAMS-form__input" id="timecard-create-work-hours-2" max="24" min="0" name="work_hours_2" step="0.25" type="number"/></td><td><select aria-label="Day 2 leave type" class="TAMS-form__input" id="timecard-create-leave-type-2" name="leave_type_2"><option value="">No leave</option><option value="vacation">Vacation</option><option value="sick">Sick</option><option value="planned_sick">Planned sick leave</option></select></td><td><input aria-label="Day 2 leave hours" class="TAMS-form__input" id="timecard-create-leave-hours-2" max="24" min="0" name="leave_hours_2" step="0.25" type="number"/></td></tr><tr><th scope="row">Day 3</th><td><input aria-label="Day 3 date" class="TAMS-form__input" id="timecard-create-work-date-3" name="work_date_3" type="date"/></td><td><input aria-label="Day 3 work hours" class="TAMS-form__input" id="timecard-create-work-hours-3" max="24" min="0" name="work_hours_3" step="0.25" type="number"/></td><td><select aria-label="Day 3 leave type" class="TAMS-form__input" id="timecard-create-leave-type-3" name="leave_type_3"><option value="">No leave</option><option value="vacation">Vacation</option><option value="sick">Sick</option><option value="planned_sick">Planned sick leave</option></select></td><td><input aria-label="Day 3 leave hours" class="TAMS-form__input" id="timecard-create-leave-hours-3" max="24" min="0" name="leave_hours_3" step="0.25" type="number"/></td></tr><tr><th scope="row">Day 4</th><td><input aria-label="Day 4 date" class="TAMS-form__input" id="timecard-create-work-date-4" name="work_date_4" type="date"/></td><td><input aria-label="Day 4 work hours" class="TAMS-form__input" id="timecard-create-work-hours-4" max="24" min="0" name="work_hours_4" step="0.25" type="number"/></td><td><select aria-label="Day 4 leave type" class="TAMS-form__input" id="timecard-create-leave-type-4" name="leave_type_4"><option value="">No leave</option><option value="vacation">Vacation</option><option value="sick">Sick</option><option value="planned_sick">Planned sick leave</option></select></td><td><input aria-label="Day 4 leave hours" class="TAMS-form__input" id="timecard-create-leave-hours-4" max="24" min="0" name="leave_hours_4" step="0.25" type="number"/></td></tr><tr><th scope="row">Day 5</th><td><input aria-label="Day 5 date" class="TAMS-form__input" id="timecard-create-work-date-5" name="work_date_5" type="date"/></td><td><input aria-label="Day 5 work hours" class="TAMS-form__input" id="timecard-create-work-hours-5" max="24" min="0" name="work_hours_5" step="0.25" type="number"/></td><td><select aria-label="Day 5 leave type" class="TAMS-form__input" id="timecard-create-leave-type-5" name="leave_type_5"><option value="">No leave</option><option value="vacation">Vacation</option><option value="sick">Sick</option><option value="planned_sick">Planned sick leave</option></select></td><td><input aria-label="Day 5 leave hours" class="TAMS-form__input" id="timecard-create-leave-hours-5" max="24" min="0" name="leave_hours_5" step="0.25" type="number"/></td></tr><tr><th scope="row">Day 6</th><td><input aria-label="Day 6 date" class="TAMS-form__input" id="timecard-create-work-date-6" name="work_date_6" type="date"/></td><td><input aria-label="Day 6 work hours" class="TAMS-form__input" id="timecard-create-work-hours-6" max="24" min="0" name="work_hours_6" step="0.25" type="number"/></td><td><select aria-label="Day 6 leave type" class="TAMS-form__input" id="timecard-create-leave-type-6" name="leave_type_6"><option value="">No leave</option><option value="vacation">Vacation</option><option value="sick">Sick</option><option value="planned_sick">Planned sick leave</option></select></td><td><input aria-label="Day 6 leave hours" class="TAMS-form__input" id="timecard-create-leave-hours-6" max="24" min="0" name="leave_hours_6" step="0.25" type="number"/></td></tr><tr><th scope="row">Day 7</th><td><input aria-label="Day 7 date" class="TAMS-form__input" id="timecard-create-work-date-7" name="work_date_7" type="date"/></td><td><input aria-label="Day 7 work hours" class="TAMS-form__input" id="timecard-create-work-hours-7" max="24" min="0" name="work_hours_7" step="0.25" type="number"/></td><td><select aria-label="Day 7 leave type" class="TAMS-form__input" id="timecard-create-leave-type-7" name="leave_type_7"><option value="">No leave</option><option value="vacation">Vacation</option><option value="sick">Sick</option><option value="planned_sick">Planned sick leave</option></select></td><td><input aria-label="Day 7 leave hours" class="TAMS-form__input" id="timecard-create-leave-hours-7" max="24" min="0" name="leave_hours_7" step="0.25" type="number"/></td></tr></tbody></table><p class="TAMS-form__help">Approved leave will be filled automatically by the backend. Leave entries must not be duplicated.</p></fieldset><div class="timecard-create__totals"><p>Total work hours: <output id="timecard-create-work-total">Calculated after submission</output></p><p>Total leave hours: <output id="timecard-create-leave-total">Calculated after submission</output></p></div><div class="TAMS-form__field timecard-create__notes-field">
+<label class="TAMS-form__label" for="timecard-create-notes">Additional Notes</label>
+<textarea class="TAMS-form__input" id="timecard-create-notes" name="notes" placeholder="" rows="4"></textarea>
+</div>
+<div class="TAMS-form__actions">
+<button class="TAMS-button TAMS-button--primary" name="intent" type="submit" value="draft">Save Draft</button>
+<button class="TAMS-button TAMS-button--primary" name="intent" type="submit" value="submit">Submit for Approval</button>
+<a class="TAMS-button TAMS-button--secondary" href="timecard_list.html">Cancel</a>
+</div>
+</form>
+<div class="TAMS-alert TAMS-alert--error timecard-create__error" hidden="" id="timecard-create-error" role="alert">Unable to complete this action. Check the form and try again.</div>
+<div class="TAMS-alert TAMS-alert--success timecard-create__success" hidden="" id="timecard-create-success" role="status">Changes saved.</div>
+</section>
+</main>
+</div>
+</body>
+</html>

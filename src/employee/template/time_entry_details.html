@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Time Entry Details | TAMS</title>
+
+    <link rel="stylesheet" href="../static/employee/time_entry_details/styles.css">
+    
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: time-entry-details__*. -->
+</head>
+<body class="TAMS-app page-time-entry-details" data-page="time_entry_details">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Employee Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="timecard_list.html">My Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="time_tracking.html">Track Time</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_dashboard.html">Leave</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_balance.html">Leave Balance</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Time Entry Details</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading time-entry-details__heading" aria-labelledby="time-entry-details-title">
+                <h1 class="TAMS-page-heading__title" id="time-entry-details-title">Time Entry Details</h1>
+                <p class="TAMS-page-heading__description">Read a work-session record and its approval status.</p>
+            </section>
+            <!-- Time Entry Record section -->
+            <section class="TAMS-card time-entry-details__record" aria-labelledby="time-entry-details-record-title">
+                <h2 class="TAMS-card__title" id="time-entry-details-record-title">Time Entry Record</h2>
+                <dl class="time-entry-details__details">
+            <div class="time-entry-details__detail"><dt>Entry ID</dt><dd>Select a time entry</dd></div>
+            <div class="time-entry-details__detail"><dt>Work date</dt><dd>Not available</dd></div>
+            <div class="time-entry-details__detail"><dt>Start time</dt><dd>Not available</dd></div>
+            <div class="time-entry-details__detail"><dt>End time</dt><dd>Not available</dd></div>
+            <div class="time-entry-details__detail"><dt>Break duration</dt><dd>Not available</dd></div>
+            <div class="time-entry-details__detail"><dt>Total hours</dt><dd>Not available</dd></div>
+            <div class="time-entry-details__detail"><dt>Approval status</dt><dd>Not available</dd></div>
+            <div class="time-entry-details__detail"><dt>Reviewer notes</dt><dd>No notes available</dd></div>
+            </dl><p><a class="TAMS-button TAMS-button--secondary" href="time_tracking.html">Back to Time Tracking</a></p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
