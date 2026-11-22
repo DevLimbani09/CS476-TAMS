@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Manager Dashboard | TAMS</title>
+
+    <link rel="stylesheet" href="../static/manager/manager_dashboard/styles.css">
+    
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: manager-dashboard__*. -->
+</head>
+<body class="TAMS-app page-manager-dashboard" data-page="manager_dashboard">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Manager Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="manager_dashboard.html" aria-current="page">Manager Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_timecards.html">Pending Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_time_entries.html">Pending Time Entries</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_leave_requests.html">Leave Approvals</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="reports.html">Team Reports</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="assigned_employees.html">Team Members</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="delegation_management.html">Delegations</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Manager Dashboard</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading manager-dashboard__heading" aria-labelledby="manager-dashboard-title">
+                <h1 class="TAMS-page-heading__title" id="manager-dashboard-title">Manager Dashboard</h1>
+                <p class="TAMS-page-heading__description">Review work submitted by your assigned team and monitor approval tasks.</p>
+            </section>
+            <!-- Team Work Queue section -->
+            <section class="TAMS-card manager-dashboard__metrics" aria-labelledby="manager-dashboard-metrics-title">
+                <h2 class="TAMS-card__title" id="manager-dashboard-metrics-title">Team Work Queue</h2>
+                <div class="manager-dashboard__stats"><article class="TAMS-card manager-dashboard__stat"><h3>Timecards Awaiting Review</h3><p data-metric="timecards_awaiting_review">Not available</p></article><article class="TAMS-card manager-dashboard__stat"><h3>Time Entries Awaiting Review</h3><p data-metric="time_entries_awaiting_review">Not available</p></article><article class="TAMS-card manager-dashboard__stat"><h3>Leave Requests Awaiting Review</h3><p data-metric="leave_requests_awaiting_review">Not available</p></article><article class="TAMS-card manager-dashboard__stat"><h3>Team Members</h3><p data-metric="team_members">Not available</p></article></div><div class="manager-dashboard__shortcuts"><a class="TAMS-button TAMS-button--secondary" href="pending_timecards.html">Review Timecards</a> <a class="TAMS-button TAMS-button--secondary" href="pending_time_entries.html">Review Time Entries</a> <a class="TAMS-button TAMS-button--secondary" href="pending_leave_requests.html">Review Leave</a> <a class="TAMS-button TAMS-button--secondary" href="reports.html">Team Reports</a></div>
+            </section>
+            <!-- Recent Team Activity section -->
+            <section class="TAMS-card manager-dashboard__activity" aria-labelledby="manager-dashboard-activity-title">
+                <h2 class="TAMS-card__title" id="manager-dashboard-activity-title">Recent Team Activity</h2>
+                <table class="TAMS-table manager-dashboard__table">
+            <caption>Recent team activity</caption>
+            <thead><tr><th scope="col">Employee</th><th scope="col">Activity</th><th scope="col">Date</th><th scope="col">Status</th><th scope="col">Action</th></tr></thead>
+            <tbody><tr><td colspan="5">No recent team activity to display.</td></tr></tbody>
+            </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

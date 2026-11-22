@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="TAMS, Time Approval Management System." name="description"/>
+<title>Timecard Review | TAMS</title>
+<!-- CSS intentionally deferred. Keep shared TAMS-* classes stable across all pages. -->
+<link href="../static/manager/timecard_review/styles.css" rel="stylesheet"/>
+
+<!-- Django later: {% load static %} and {% static 'css/styles.css' %}. -->
+<!-- File names and form names: snake_case; IDs: kebab-case; page CSS: timecard-review__*. -->
+    <script defer src="../static/manager/js/event_handlers.js"></script>
+    <script defer src="../static/manager/js/event_registration.js"></script>
+</head>
+<body class="TAMS-app page-timecard-review" data-page="timecard_review">
+<!-- Shared sidebar structure. Content is role-aware when integrated with Django. -->
+<aside aria-label="Main navigation" class="TAMS-sidebar">
+<div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+<nav aria-label="Primary" class="TAMS-sidebar__nav">
+<ul class="TAMS-sidebar__list">
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+</ul>
+<!-- Django later: render role-specific navigation only for authenticated, authorized roles. -->
+<p class="TAMS-sidebar__section-title">Manager Tools</p>
+<ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="manager_dashboard.html">Manager Dashboard</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_timecards.html">Pending Timecards</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_time_entries.html">Pending Time Entries</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_leave_requests.html">Leave Approvals</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="reports.html">Team Reports</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="assigned_employees.html">Team Members</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="delegation_management.html">Delegations</a></li>
+</ul>
+</nav>
+</aside>
+<div class="TAMS-layout">
+<!-- Shared header markup. Keep TAMS-header class names consistent. -->
+<header class="TAMS-header">
+<span class="TAMS-header__page-name">Timecard Review</span>
+<div class="TAMS-header__actions">
+<a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+<a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+</div>
+</header>
+<main class="TAMS-main" id="main-content">
+<section aria-labelledby="timecard-review-title" class="TAMS-page-heading timecard-review__heading">
+<h1 class="TAMS-page-heading__title" id="timecard-review-title">Timecard Review</h1>
+<p class="TAMS-page-heading__description">Approve or reject a team member’s submitted timecard.</p>
+</section>
+<section aria-labelledby="timecard-review-details-title" class="TAMS-card timecard-review__details">
+<h2 class="TAMS-card__title" id="timecard-review-details-title">Submitted Timecard</h2>
+<dl class="timecard-review__details">
+<div class="timecard-review__detail"><dt>Employee</dt><dd>Select an assigned employee timecard</dd></div>
+<div class="timecard-review__detail"><dt>Timecard ID</dt><dd>Not selected</dd></div>
+<div class="timecard-review__detail"><dt>Pay period</dt><dd>Not available</dd></div>
+<div class="timecard-review__detail"><dt>Total hours</dt><dd>Not available</dd></div>
+<div class="timecard-review__detail"><dt>Status</dt><dd>Not available</dd></div>
+<div class="timecard-review__detail"><dt>Submitted on</dt><dd>Not available</dd></div>
+</dl><table class="TAMS-table timecard-review__table">
+<caption>Daily timecard breakdown</caption>
+<thead><tr><th scope="col">Date</th><th scope="col">Worked hours</th><th scope="col">Leave hours</th><th scope="col">Entry notes</th></tr></thead>
+<tbody><tr><td colspan="4">Select a submitted timecard from the pending list.</td></tr></tbody>
+</table>
+</section><section aria-labelledby="timecard-review-decision-title" class="TAMS-card timecard-review__decision">
+<h2 class="TAMS-card__title" id="timecard-review-decision-title">Record Decision</h2>
+<p class="timecard-review__guidance">You must be assigned to this employee or have a valid delegation. A rejection reason is required by the backend.</p>
+<!-- Django: add {% csrf_token %}; validate and authorize all actions on the server. -->
+<form action="" class="TAMS-form timecard-review__form" method="post">
+<div class="TAMS-form__field timecard-review__review-notes-field">
+<label class="TAMS-form__label" for="timecard-review-review-notes">Decision Notes</label>
+<textarea class="TAMS-form__input" id="timecard-review-review-notes" name="review_notes" placeholder="A reason is required when rejecting a timecard" rows="4"></textarea>
+</div>
+<div class="TAMS-form__actions">
+<button class="TAMS-button TAMS-button--primary" name="intent" type="submit" value="approve">Approve Timecard</button>
+<button class="TAMS-button TAMS-button--secondary" name="intent" type="submit" value="reject">Reject Timecard</button>
+<a class="TAMS-button TAMS-button--secondary" href="pending_timecards.html">Back to Pending Timecards</a>
+</div>
+</form>
+<div class="TAMS-alert TAMS-alert--error timecard-review__error" hidden="" id="timecard-review-error" role="alert">Unable to complete this action. Check the form and try again.</div>
+<div class="TAMS-alert TAMS-alert--success timecard-review__success" hidden="" id="timecard-review-success" role="status">Changes saved.</div>
+</section>
+</main>
+</div>
+</body>
+</html>

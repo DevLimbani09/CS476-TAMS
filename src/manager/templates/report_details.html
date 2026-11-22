@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Report Details | TAMS</title>
+
+    <link rel="stylesheet" href="../static/manager/report_details/styles.css">
+<!-- File names and form names: snake_case; IDs: kebab-case; page CSS: report-details__*. -->
+</head>
+<body class="TAMS-app page-report-details" data-page="report_details">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+            </ul>
+            
+            <p class="TAMS-sidebar__section-title">Manager Tools</p>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="manager_dashboard.html">Manager Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_timecards.html">Pending Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_time_entries.html">Pending Time Entries</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_leave_requests.html">Leave Approvals</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="reports.html">Team Reports</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="assigned_employees.html">Team Members</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="delegation_management.html">Delegations</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="TAMS-layout">
+        <!--Shared Header-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Report Details</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+            </div>
+        </header>
+        <main class="TAMS-main" id="main-content">
+            <!-- Page heading -->
+            <section class="TAMS-page-heading report-details__heading" aria-labelledby="report-details-title">
+                <h1 class="TAMS-page-heading__title" id="report-details-title">Report Details</h1>
+                <p class="TAMS-page-heading__description">Review totals and breakdowns for an authorized team report.</p>
+            </section>
+            <!-- Report Summary section -->
+            <section class="TAMS-card report-details__summary" aria-labelledby="report-details-summary-title">
+                <h2 class="TAMS-card__title" id="report-details-summary-title">Report Summary</h2>
+                <dl class="report-details__details">
+            <div class="report-details__detail"><dt>Report type</dt><dd>Not generated</dd></div>
+            <div class="report-details__detail"><dt>Date range</dt><dd>Not selected</dd></div>
+            <div class="report-details__detail"><dt>Employees included</dt><dd>Not available</dd></div>
+            <div class="report-details__detail"><dt>Total recorded hours</dt><dd>Not calculated</dd></div>
+            <div class="report-details__detail"><dt>Approved hours</dt><dd>Not calculated</dd></div>
+            <div class="report-details__detail"><dt>Pending approvals</dt><dd>Not calculated</dd></div>
+            </dl><table class="TAMS-table report-details__table">
+            <caption>Report breakdown by employee</caption>
+            <thead><tr><th scope="col">Employee</th><th scope="col">Hours worked</th><th scope="col">Leave hours</th><th scope="col">Approved</th><th scope="col">Pending</th></tr></thead>
+            <tbody><tr><td colspan="5">Generate a report on the Reports page first.</td></tr></tbody>
+            </table><p><a class="TAMS-button TAMS-button--secondary" href="reports.html">Back to Reports</a></p><p>Export functionality requires a server endpoint that applies the same authorization filters as this report.</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

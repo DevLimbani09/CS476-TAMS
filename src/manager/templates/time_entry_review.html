@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="TAMS, Time Approval Management System." name="description"/>
+<title>Time Entry Review | TAMS</title>
+<!-- CSS intentionally deferred. Keep shared TAMS-* classes stable across all pages. -->
+<link href="../static/manager/time_entry_review/styles.css" rel="stylesheet"/>
+
+<!-- Django later: {% load static %} and {% static 'css/styles.css' %}. -->
+<!-- File names and form names: snake_case; IDs: kebab-case; page CSS: time-entry-review__*. -->
+    <script defer src="../static/manager/js/event_handlers.js"></script>
+    <script defer src="../static/manager/js/event_registration.js"></script>
+</head>
+<body class="TAMS-app page-time-entry-review" data-page="time_entry_review">
+<!-- Shared sidebar structure. Content is role-aware when integrated with Django. -->
+<aside aria-label="Main navigation" class="TAMS-sidebar">
+<div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+<nav aria-label="Primary" class="TAMS-sidebar__nav">
+<ul class="TAMS-sidebar__list">
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
+</ul>
+<!-- Django later: render role-specific navigation only for authenticated, authorized roles. -->
+<p class="TAMS-sidebar__section-title">Manager Tools</p>
+<ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="manager_dashboard.html">Manager Dashboard</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_timecards.html">Pending Timecards</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_time_entries.html">Pending Time Entries</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_leave_requests.html">Leave Approvals</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="reports.html">Team Reports</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="assigned_employees.html">Team Members</a></li>
+<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="delegation_management.html">Delegations</a></li>
+</ul>
+</nav>
+</aside>
+<div class="TAMS-layout">
+<!-- Shared header markup. Keep TAMS-header class names consistent. -->
+<header class="TAMS-header">
+<span class="TAMS-header__page-name">Time Entry Review</span>
+<div class="TAMS-header__actions">
+<a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
+<a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
+</div>
+</header>
+<main class="TAMS-main" id="main-content">
+<section aria-labelledby="time-entry-review-title" class="TAMS-page-heading time-entry-review__heading">
+<h1 class="TAMS-page-heading__title" id="time-entry-review-title">Time Entry Review</h1>
+<p class="TAMS-page-heading__description">Approve or reject a tracked work session after reviewing the timestamps.</p>
+</section>
+<section aria-labelledby="time-entry-review-record-title" class="TAMS-card time-entry-review__record">
+<h2 class="TAMS-card__title" id="time-entry-review-record-title">Submitted Time Entry</h2>
+<dl class="time-entry-review__details">
+<div class="time-entry-review__detail"><dt>Employee</dt><dd>Select an assigned employee entry</dd></div>
+<div class="time-entry-review__detail"><dt>Entry ID</dt><dd>Not selected</dd></div>
+<div class="time-entry-review__detail"><dt>Work date</dt><dd>Not available</dd></div>
+<div class="time-entry-review__detail"><dt>Start time</dt><dd>Not available</dd></div>
+<div class="time-entry-review__detail"><dt>End time</dt><dd>Not available</dd></div>
+<div class="time-entry-review__detail"><dt>Breaks</dt><dd>Not available</dd></div>
+<div class="time-entry-review__detail"><dt>Total duration</dt><dd>Not available</dd></div>
+<div class="time-entry-review__detail"><dt>Status</dt><dd>Not available</dd></div>
+</dl>
+</section><section aria-labelledby="time-entry-review-decision-title" class="TAMS-card time-entry-review__decision">
+<h2 class="TAMS-card__title" id="time-entry-review-decision-title">Review Decision</h2>
+<p class="time-entry-review__guidance">Record any corrections and preserve the original timestamps in an audit trail.</p>
+<!-- Django: add {% csrf_token %}; validate and authorize all actions on the server. -->
+<form action="" class="TAMS-form time-entry-review__form" method="post">
+<div class="TAMS-form__field time-entry-review__review-notes-field">
+<label class="TAMS-form__label" for="time-entry-review-review-notes">Review Notes</label>
+<textarea class="TAMS-form__input" id="time-entry-review-review-notes" name="review_notes" placeholder="Required when rejecting" rows="4"></textarea>
+</div>
+<div class="TAMS-form__actions">
+<button class="TAMS-button TAMS-button--primary" name="intent" type="submit" value="approve">Approve Entry</button>
+<button class="TAMS-button TAMS-button--secondary" name="intent" type="submit" value="reject">Reject Entry</button>
+<a class="TAMS-button TAMS-button--secondary" href="pending_time_entries.html">Back to Entries</a>
+</div>
+</form>
+<div class="TAMS-alert TAMS-alert--error time-entry-review__error" hidden="" id="time-entry-review-error" role="alert">Unable to complete this action. Check the form and try again.</div>
+<div class="TAMS-alert TAMS-alert--success time-entry-review__success" hidden="" id="time-entry-review-success" role="status">Changes saved.</div>
+</section>
+</main>
+</div>
+</body>
+</html>
