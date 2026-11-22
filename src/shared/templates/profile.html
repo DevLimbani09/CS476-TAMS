@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Profile | TAMS</title>
+
+    
+    <link rel="stylesheet" href="../static/shared/profile/styles.css">
+    <!-- Django later: load static and use {% static 'css/styles.css' %}. -->
+    <!-- Naming: shared classes TAMS-*; page classes profile__*;
+         unique IDs kebab-case; form name attributes snake_case. -->
+</head>
+<body class="TAMS-app page-profile" data-page="profile">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="profile.html" aria-current="page">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="help_support.html">Help & Support</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <div class="TAMS-layout">
+        <!-- SHARED HEADER-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Profile</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="profile.html">Profile</a>
+            </div>
+        </header>
+
+        <!-- Profile page main content -->
+        <main class="TAMS-main" id="main-content">
+            <!-- Profile page header -->
+            <section class="TAMS-page-heading profile__heading" aria-labelledby="profile-title">
+                <h1 class="TAMS-page-heading__title" id="profile-title">Profile</h1>
+                <p class="TAMS-page-heading__description">Review your account, contact, and employment information.</p>
+            </section>
+
+            <!-- Profile values will be requested from the server model -->
+            <section class="TAMS-card profile__overview" aria-labelledby="profile-overview-title">
+                <h2 class="TAMS-card__title" id="profile-overview-title">Personal Information</h2>
+                <!-- User personal information: Profile Picture, Name, Employee ID, Corporate Email Address, Contact Number -->
+                <div class="profile__identity">
+                    <div class="profile__avatar" aria-label="Profile photo placeholder">Profile photo</div>
+                    <dl class="profile__details">
+                        <div class="profile__detail"><dt>Full Name</dt><dd data-profile-field="full_name">Not available</dd></div>
+                        <div class="profile__detail"><dt>Employee ID</dt><dd data-profile-field="employee_id">Not available</dd></div>
+                        <div class="profile__detail"><dt>Corporate Email</dt><dd data-profile-field="corporate_email">Not available</dd></div>
+                        <div class="profile__detail"><dt>Contact Number</dt><dd data-profile-field="contact_number">Not provided</dd></div>
+                    </dl>
+                </div>
+                <!-- Link redirecting to the edit profile page -->
+                <a class="TAMS-button TAMS-button--primary profile__edit-link" href="edit_profile.html">Edit Profile</a>
+            </section>
+
+            
+            <section class="TAMS-card profile__employment" aria-labelledby="profile-employment-title">
+                <h2 class="TAMS-card__title" id="profile-employment-title">Employment Information</h2>
+                <!-- User employement Information: Department, Manager, Manager's Email, Account Status -->
+                <dl class="profile__details">
+                    <div class="profile__detail"><dt>Department</dt><dd data-profile-field="department">Not available</dd></div>
+                    <div class="profile__detail"><dt>Manager</dt><dd data-profile-field="manager_name">Not available</dd></div>
+                    <div class="profile__detail"><dt>Manager's Email</dt><dd data-profile-field="manager_email">Not available</dd></div>
+                    <div class="profile__detail"><dt>Account Status</dt><dd data-profile-field="account_status">Not available</dd></div>
+                </dl>
+                
+            </section>
+        </main>
+    </div>
+</body>
+</html>

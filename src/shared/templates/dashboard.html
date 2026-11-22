@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Dashboard | TAMS</title>
+
+    <link rel="stylesheet" href="../static/shared/dashboard/styles.css">
+ 
+</head>
+<body class="TAMS-app page-dashboard" data-page="dashboard">
+    <!-- SHARED SIDEBAR -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="dashboard.html" aria-current="page">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="settings.html">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="help_support.html">Help & Support</a></li>
+            </ul>
+            
+        </nav>
+    </aside>
+
+    <div class="TAMS-layout">
+        <!-- SHARED HEADER -->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Dashboard</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="profile.html">Profile</a>
+            </div>
+        </header>
+
+        <!-- dashboard main content -->
+        <main class="TAMS-main" id="main-content">
+            <!-- dashboard page heading -->
+            <section class="TAMS-page-heading dashboard__heading" aria-labelledby="dashboard-title">
+                <h1 class="TAMS-page-heading__title" id="dashboard-title">Dashboard</h1>
+                <p class="TAMS-page-heading__description">View your tasks, recent activity, and useful shortcuts.</p>
+            </section>
+
+            <!-- Proceduraly populated counts and activity only from records allowed for the authenticated user. -->
+            <!-- This is a common landing view. Dedicated manager/admin dashboards exists as well -->
+             <!-- Summary cards -->
+            <section class="dashboard__summary" aria-labelledby="dashboard-summary-title">
+                <h2 id="dashboard-summary-title">Overview</h2>
+                
+                <div class="dashboard__stats">
+                    <!-- Cards showing the hours submitted this week -->
+                    <article class="TAMS-card dashboard__stat-card">
+                        <h3>This Week's Hours</h3>
+                        <p class="dashboard__stat-value" data-metric="weekly_hours">Not available</p>
+                        <a href="../employee/timecard_list.html">View timecards</a>
+                    </article>
+
+                    <!-- Cards showing current time card hours -->
+                    <article class="TAMS-card dashboard__stat-card">
+                        <h3>Current Timecard</h3>
+                        <p class="dashboard__stat-value" data-metric="timecard_status">Not available</p>
+                        <a href="../employee/timecard_list.html">Manage timecards</a>
+                    </article>
+
+                    <!-- Cards showing the pending requets  -->
+                    <article class="TAMS-card dashboard__stat-card">
+                        <h3>Pending Requests</h3>
+                        <p class="dashboard__stat-value" data-metric="pending_requests">Not available</p>
+                        <a href="../employee/leave_dashboard.html">View leave requests</a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Records Table -->
+            <section class="TAMS-card dashboard__quick-actions" aria-labelledby="dashboard-actions-title">
+                <h2 class="TAMS-card__title" id="dashboard-actions-title">Quick Actions</h2>
+                <div class="TAMS-card__links" id="dashboard-actions-link">
+                    <a class="TAMS-button TAMS-button--primary" href="../employee/timecard_create.html">Create Timecard</a>
+                    <a class="TAMS-button TAMS-button--secondary" href="../employee/time_tracking.html">Track Time</a>
+                    <a class="TAMS-button TAMS-button--secondary" href="../employee/leave_request_create.html">Request Leave</a>
+                    <a class="TAMS-button TAMS-button--secondary" href="notifications.html">View Notifications</a>
+                </div>
+            </section>
+
+
+            <section class="TAMS-card dashboard__recent-activity" aria-labelledby="dashboard-activity-title">
+                <h2 class="TAMS-card__title" id="dashboard-activity-title">Recent Activity</h2>
+                <table class="TAMS-table dashboard__activity-table">
+                    <caption>Recent timecards, time entries, and leave updates</caption>
+                    <thead><tr><th scope="col">Activity</th><th scope="col">Date</th><th scope="col">Status</th><th scope="col">Details</th></tr></thead>
+                    <tbody>
+                        <tr><td colspan="4">No recent activity to display. Your updates will appear here.</td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
