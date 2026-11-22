@@ -10,23 +10,45 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+import os
 from pathlib import Path
-
+##################################################################################
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+#BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(3(3#@cy%qbuel50qvagpd!fcif@1#5fzvx)0g771($wea@!t0'
+#SECRET_KEY = 'django-insecure-(3(3#@cy%qbuel50qvagpd!fcif@1#5fzvx)0g771($wea@!t0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
+####################################################################################
+#   Changes: for render hosting
+####################################################################################
+# SECURITY WARNING: don't run with debug turned on in production!
+# Read the secret key from environment variables.
+SECRET_KEY = os.environ["SECRET_KEY"]
 
+# Debugging is disabled by default.
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+
+# List of hosts allowed to access the application.
+ALLOWED_HOSTS = [
+    "cs476-tams.onrender.com",
+    "localhost",
+    "127.0.0.1",
+]
+
+render_hostname = os.environ.get("RENDER_EXTERNAL_HOSTNAME")
+
+if render_hostname and render_hostname not in ALLOWED_HOSTS:
+    ALLOWED_HOSTS.append(render_hostname)
+####################################################################################
 
 # Application definition
 
