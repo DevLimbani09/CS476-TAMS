@@ -6,20 +6,20 @@
 <meta content="TAMS, Time Approval Management System." name="description"/>
 <title>Pending Timecards | TAMS</title>
 <!-- CSS intentionally deferred. Keep shared TAMS-* classes stable across all pages. -->
-<link href="../static/manager/pending_timecards/styles.css" rel="stylesheet"/>
+<link href="../static/css/pending_timecards/styles.css" rel="stylesheet"/>
 
 <!-- Django later: {% load static %} and {% static 'css/styles.css' %}. -->
 <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: pending-timecards__*. -->
-    <script defer src="../static/manager/js/event_handlers.js"></script>
-    <script defer src="../static/manager/js/event_registration.js"></script>
+    <script defer src="../static/css/js/event_handlers.js"></script>
+    <script defer src="../static/css/js/event_registration.js"></script>
 </head>
 <body class="TAMS-app page-pending-timecards" data-page="pending_timecards">
 <!-- Shared sidebar structure. Content is role-aware when integrated with Django. -->
 <aside aria-label="Main navigation" class="TAMS-sidebar">
-<div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
+<div class="TAMS-sidebar__brand">TAMS</div>
 <nav aria-label="Primary" class="TAMS-sidebar__nav">
 <ul class="TAMS-sidebar__list">
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
+
 <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
 <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
 <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>

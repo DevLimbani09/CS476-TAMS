@@ -11,14 +11,14 @@
 
       <link
          rel="stylesheet"
-         href="../static/employee/timecard_create/styles.css"
+         href="../static/css/timecard_create/styles.css"
       />
    </head>
    <body class="TAMS-app page-timecard-create" data-page="timecard_create">
       <!-- Shared Sidebar -->
       <aside class="TAMS-sidebar" aria-label="Main navigation">
          <div class="TAMS-sidebar__brand">
-            <a href="../shared/dashboard.html">TAMS</a>
+            TAMS
          </div>
          <nav class="TAMS-sidebar__nav" aria-label="Primary">
             <ul class="TAMS-sidebar__list">
@@ -52,29 +52,13 @@
                   >
                </li>
             </ul>
-            <!-- Employee Sidebar tools -->
             <p class="TAMS-sidebar__section-title">Employee Tools</p>
-            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
-               <li class="TAMS-sidebar__item">
-                  <a class="TAMS-sidebar__link" href="timecard_list.html"
-                     >My Timecards</a
-                  >
-               </li>
-               <li class="TAMS-sidebar__item">
-                  <a class="TAMS-sidebar__link" href="time_tracking.html"
-                     >Track Time</a
-                  >
-               </li>
-               <li class="TAMS-sidebar__item">
-                  <a class="TAMS-sidebar__link" href="leave_dashboard.html"
-                     >Leave</a
-                  >
-               </li>
-               <li class="TAMS-sidebar__item">
-                  <a class="TAMS-sidebar__link" href="leave_balance.html"
-                     >Leave Balance</a
-                  >
-               </li>
+            <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">   
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="employee_dashboard.html">Employee Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="timecard_list.html">My Timecards</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="time_tracking.html">Track Time</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_dashboard.html" aria-current="page">Leave</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="leave_balance.html">Leave Balance</a></li>
             </ul>
          </nav>
       </aside>
