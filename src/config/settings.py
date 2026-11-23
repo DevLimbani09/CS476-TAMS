@@ -39,7 +39,6 @@ DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 # List of hosts allowed to access the application.
 ALLOWED_HOSTS = [
-    "cs476-tams.onrender.com",
     "localhost",
     "127.0.0.1",
 ]
