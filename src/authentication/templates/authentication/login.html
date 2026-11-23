@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 
 <html lang="en">
@@ -6,9 +7,9 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <meta content="TAMS, Time Approval Management System." name="description" />
     <title>Login | TAMS</title>
-    <link href="../static/css/login/styles.css" rel="stylesheet" />
-    <script defer src="../static/css/js/event_handlers.js"></script>
-    <script defer src="../static/css/js/event_registration.js"></script>
+    <link href="{% static 'css/login/styles.css' %}" rel="stylesheet" />
+    <script defer src="{% static 'css/js/event_handlers.js' %}"></script>
+    <script defer src="{% static 'css/js/event_registration.js' %}"></script>
   </head>
 
   <body class="TAMS-app page-login" data-page="login">
@@ -27,10 +28,9 @@
             </p>
           </div>
           <form action="" class="TAMS-form login__form" method="post">
+            {% csrf_token %} 
             <div class="TAMS-form__field login__username-field">
-              <label class="TAMS-form__label" for="login-username"
-                >Username or Email</label
-              >
+              <label class="TAMS-form__label" for="login-username">Username or Email</label>
               <input
                 class="TAMS-form__input"
                 id="login-username"
@@ -65,12 +65,12 @@
               </button>
             </div>
             <div
-              class="TAMS-alert TAMS-alert--error login__error"
-              hidden=""
-              id="login-error"
-              role="alert"
+            class="TAMS-alert TAMS-alert--error login__error"
+            {% if not login_error %}hidden{% endif %}
+            id="login-error"
+            role="alert"
             >
-              Unable to sign in. Check your details and try again.
+              {{ login_error|default:"Unable to sign in. Check your details and try again." }}
             </div>
             <div class="TAMS-form__actions login__actions">
               <button class="TAMS-button TAMS-button--primary" type="submit">
