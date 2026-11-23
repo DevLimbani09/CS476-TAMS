@@ -1,12 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
 
 def login_page(request):
     if request.method == "POST":
         return render(
             request,
-            "authentication/login.html",
+            "login.html",
             {
                 "login_error": (
                     "Sign-in functionality is not connected yet."
@@ -15,4 +14,4 @@ def login_page(request):
             status=501,
         )
 
-    return render(request, "authentication/login.html")
+    return render(request, "login.html")
