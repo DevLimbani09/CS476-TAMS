@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TAMS, Time Approval Management System.">
+    <title>Settings | TAMS</title>
+
+    <link rel="stylesheet" href="{% static 'css/settings/styles.css' %}">
+    <script defer src="{% static 'js/event_handlers.js' %}"></script>
+    <script defer src="{% static 'js/event_registration.js' %}"></script>
+</head>
+<body class="TAMS-app page-settings" data-page="settings">
+    <!-- Shared Sidebar -->
+    <aside class="TAMS-sidebar" aria-label="Main navigation">
+        <div class="TAMS-sidebar__brand"><a href="dashboard.html">TAMS</a></div>
+        <nav class="TAMS-sidebar__nav" aria-label="Primary">
+            <ul class="TAMS-sidebar__list">
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="dashboard.html">Dashboard</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="notifications.html">Notifications</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="profile.html">My Profile</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="settings.html" aria-current="page">Settings</a></li>
+                <li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="help_support.html">Help & Support</a></li>
+            </ul>
+            
+        </nav>
+    </aside>
+
+    <div class="TAMS-layout">
+        <!-- SHARED HEADER-->
+        <header class="TAMS-header">
+            <span class="TAMS-header__page-name">Settings</span>
+            <div class="TAMS-header__actions">
+                <a class="TAMS-header__notification-link" href="notifications.html">Notifications</a>
+                <a class="TAMS-header__profile-link" href="profile.html">Profile</a>
+            </div>
+        </header>
+
+        <!-- Settings main content -->
+        <main class="TAMS-main" id="main-content">
+            <section class="TAMS-page-heading settings__heading" aria-labelledby="settings-title">
+                <h1 class="TAMS-page-heading__title" id="settings-title">Settings</h1>
+                <p class="TAMS-page-heading__description">Manage your notification preferences, appearance, and account security.</p>
+            </section>
+
+            <!-- Security settings, allow user to update their password. -->
+            <section class="TAMS-card settings__account" aria-labelledby="settings-account-title">
+                <h2 class="TAMS-card__title" id="settings-account-title">Account &amp; Security</h2>
+                <p>Keep your password up to date.</p>
+                <ul class="settings__account-links">
+                    <li><a href="../authentication/change_password.html">Change Password</a></li>
+                </ul>
+            </section>
+
+
+            <section class="TAMS-card settings__preferences" aria-labelledby="settings-preferences-title">
+                <h2 class="TAMS-card__title" id="settings-preferences-title">Notification Preferences</h2>
+                
+                <form class="TAMS-form settings__form" method="post" action="{% url 'shared:settings' %}">
+                    {% csrf_token %}
+                    <fieldset class="TAMS-form__fieldset settings__notifications-fields">
+                        <legend>Email Notifications</legend>
+                        <div class="TAMS-form__field settings__timecard-alert">
+                            <input id="settings-timecard-updates" name="timecard_updates" type="checkbox" value="yes">
+                            <label class="TAMS-form__label" for="settings-timecard-updates">Timecard approval and rejection updates</label>
+                        </div>
+                        <div class="TAMS-form__field settings__leave-alert">
+                            <input id="settings-leave-updates" name="leave_updates" type="checkbox" value="yes">
+                            <label class="TAMS-form__label" for="settings-leave-updates">Leave request decisions</label>
+                        </div>
+                        <div class="TAMS-form__field settings__reminders">
+                            <input id="settings-reminders" name="deadline_reminders" type="checkbox" value="yes">
+                            <label class="TAMS-form__label" for="settings-reminders">Timecard reminders</label>
+                        </div>
+                    </fieldset>
+                    <div class="TAMS-alert TAMS-alert--error settings__error" id="settings-error" role="alert" hidden>Unable to save your preferences.</div>
+                    <div class="TAMS-alert TAMS-alert--success settings__success" id="settings-success" role="status" {% if not success %}hidden{% endif %}>Preferences saved.</div>
+                    <div class="TAMS-form__actions settings__actions">
+                        <button class="TAMS-button TAMS-button--primary" type="submit">Save Preferences</button>
+                        <a class="TAMS-button TAMS-button--secondary" href="dashboard.html">Cancel</a>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
