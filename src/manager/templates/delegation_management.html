@@ -1,98 +1,345 @@
-<!DOCTYPE html>
+{% load static %}
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="TAMS, Time Approval Management System." name="description"/>
-<title>Delegation Management | TAMS</title>
-<!-- CSS intentionally deferred. Keep shared TAMS-* classes stable across all pages. -->
-<link href="../static/manager/delegation_management/styles.css" rel="stylesheet"/>
-<!-- Django later: {% load static %} and {% static 'css/styles.css' %}. -->
-<!-- File names and form names: snake_case; IDs: kebab-case; page CSS: delegation-management__*. -->
-    <script defer src="../static/manager/js/event_handlers.js"></script>
-    <script defer src="../static/manager/js/event_registration.js"></script>
-</head>
-<body class="TAMS-app page-delegation-management" data-page="delegation_management">
-<!-- Shared sidebar structure. Content is role-aware when integrated with Django. -->
-<aside aria-label="Main navigation" class="TAMS-sidebar">
-<div class="TAMS-sidebar__brand"><a href="../shared/dashboard.html">TAMS</a></div>
-<nav aria-label="Primary" class="TAMS-sidebar__nav">
-<ul class="TAMS-sidebar__list">
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/dashboard.html">Dashboard</a></li>
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/notifications.html">Notifications</a></li>
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/profile.html">My Profile</a></li>
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/settings.html">Settings</a></li>
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="../shared/help_support.html">Help &amp; Support</a></li>
-</ul>
-<!-- Django later: render role-specific navigation only for authenticated, authorized roles. -->
-<p class="TAMS-sidebar__section-title">Manager Tools</p>
-<ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="manager_dashboard.html">Manager Dashboard</a></li>
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_timecards.html">Pending Timecards</a></li>
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_time_entries.html">Pending Time Entries</a></li>
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="pending_leave_requests.html">Leave Approvals</a></li>
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="reports.html">Team Reports</a></li>
-<li class="TAMS-sidebar__item"><a class="TAMS-sidebar__link" href="assigned_employees.html">Team Members</a></li>
-<li class="TAMS-sidebar__item"><a aria-current="page" class="TAMS-sidebar__link" href="delegation_management.html">Delegations</a></li>
-</ul>
-</nav>
-</aside>
-<div class="TAMS-layout">
-<!-- Shared header markup. Keep TAMS-header class names consistent. -->
-<header class="TAMS-header">
-<span class="TAMS-header__page-name">Delegation Management</span>
-<div class="TAMS-header__actions">
-<a class="TAMS-header__notification-link" href="../shared/notifications.html">Notifications</a>
-<a class="TAMS-header__profile-link" href="../shared/profile.html">Profile</a>
-</div>
-</header>
-<main class="TAMS-main" id="main-content">
-<section aria-labelledby="delegation-management-title" class="TAMS-page-heading delegation-management__heading">
-<h1 class="TAMS-page-heading__title" id="delegation-management-title">Delegation Management</h1>
-<p class="TAMS-page-heading__description">Temporarily delegate defined approval responsibilities during an absence.</p>
-</section>
-<section aria-labelledby="delegation-management-create-title" class="TAMS-card delegation-management__create">
-<h2 class="TAMS-card__title" id="delegation-management-create-title">Assign Temporary Approval Access</h2>
-<p class="delegation-management__guidance">Manager must be authorized. Delegate must be active and eligible. Rights must expire and be revocable.</p>
-<!-- Django: add {% csrf_token %}; validate and authorize all actions on the server. -->
-<form action="" class="TAMS-form delegation-management__form" method="post">
-<div class="TAMS-form__field delegation-management__delegate-employee-field">
-<label class="TAMS-form__label" for="delegation-management-delegate-employee">Delegate User</label>
-<input class="TAMS-form__input" id="delegation-management-delegate-employee" name="delegate_employee" placeholder="Search an authorized, active delegate" required="" type="search"/>
-</div><div class="TAMS-form__field delegation-management__start-date-field">
-<label class="TAMS-form__label" for="delegation-management-start-date">Delegation Start</label>
-<input class="TAMS-form__input" id="delegation-management-start-date" name="start_date" required="" type="date"/>
-</div><div class="TAMS-form__field delegation-management__end-date-field">
-<label class="TAMS-form__label" for="delegation-management-end-date">Delegation End</label>
-<input class="TAMS-form__input" id="delegation-management-end-date" name="end_date" required="" type="date"/>
-</div><div class="TAMS-form__field delegation-management__scope-field">
-<label class="TAMS-form__label" for="delegation-management-scope">Approval Scope</label>
-<select class="TAMS-form__input" id="delegation-management-scope" name="scope" required="">
-<option value="timecards">Timecards</option>
-<option value="time_entries">Time Entries</option>
-<option value="leave">Leave Requests</option>
-<option value="all">All listed approvals</option>
-</select>
-</div><div class="TAMS-form__field delegation-management__reason-field">
-<label class="TAMS-form__label" for="delegation-management-reason">Reason</label>
-<textarea class="TAMS-form__input" id="delegation-management-reason" name="reason" placeholder="" required="" rows="4"></textarea>
-</div>
-<div class="TAMS-form__actions">
-<button class="TAMS-button TAMS-button--primary" type="submit">Create Delegation</button>
-<a class="TAMS-button TAMS-button--secondary" href="manager_dashboard.html">Back to Dashboard</a>
-</div>
-</form>
-<div class="TAMS-alert TAMS-alert--error delegation-management__error" hidden="" id="delegation-management-error" role="alert">Unable to complete this action. Check the form and try again.</div>
-<div class="TAMS-alert TAMS-alert--success delegation-management__success" hidden="" id="delegation-management-success" role="status">Changes saved.</div>
-</section><section aria-labelledby="delegation-management-active-title" class="TAMS-card delegation-management__active">
-<h2 class="TAMS-card__title" id="delegation-management-active-title">Active and Scheduled Delegations</h2>
-<table class="TAMS-table delegation-management__table">
-<caption>Delegated approvals</caption>
-<thead><tr><th scope="col">Delegate</th><th scope="col">Scope</th><th scope="col">Start</th><th scope="col">End</th><th scope="col">Status</th><th scope="col">Revoke</th></tr></thead>
-<tbody><tr><td colspan="6">No active delegations.</td></tr></tbody>
-</table>
-</section>
-</main>
-</div>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="TAMS, Time Approval Management System." name="description" />
+    <title>Delegation Management | TAMS</title>
+    <!-- Here load page-specific styles, using Django's static file handling. -->
+     <link
+      href="{% static 'css/delegation_management/styles.css' %}"
+      rel="stylesheet"
+    />
+    <!-- Django later: {% load static %} and {% static 'css/styles.css' %}. -->
+    <!-- File names and form names: snake_case; IDs: kebab-case; page CSS: delegation-management__*. -->
+    <!-- Here load shared JavaScript event handlers and event registration scripts. -->
+    <script defer src="{% static 'css/js/event_handlers.js' %}"></script>
+    <script defer src="{% static 'css/js/event_registration.js' %}"></script>
+  </head>
+  <body
+    class="TAMS-app page-delegation-management"
+    data-page="delegation_management"
+  >
+    <!-- Shared sidebar structure. Content is role-aware when integrated with Django. -->
+    <aside aria-label="Main navigation" class="TAMS-sidebar">
+      <div class="TAMS-sidebar__brand">TAMS</div>
+      <nav aria-label="Primary" class="TAMS-sidebar__nav">
+        <ul class="TAMS-sidebar__list">
+          <li class="TAMS-sidebar__item">
+            <a
+              class="TAMS-sidebar__link"
+              href="{% url 'shared:notifications' %}"
+              >Notifications</a
+            >
+          </li>
+          <li class="TAMS-sidebar__item">
+            <a class="TAMS-sidebar__link" href="{% url 'shared:profile' %}"
+              >My Profile</a
+            >
+          </li>
+          <li class="TAMS-sidebar__item">
+            <a class="TAMS-sidebar__link" href="{% url 'shared:settings' %}"
+              >Settings</a
+            >
+          </li>
+          <li class="TAMS-sidebar__item">
+            <a class="TAMS-sidebar__link" href="{% url 'shared:help_support' %}"
+              >Help &amp; Support</a
+            >
+          </li>
+        </ul>
+        <!-- Django later: render role-specific navigation only for authenticated, authorized roles. -->
+        <p class="TAMS-sidebar__section-title">Manager Tools</p>
+        <ul class="TAMS-sidebar__list TAMS-sidebar__role-list">
+          <li class="TAMS-sidebar__item">
+            <a
+              class="TAMS-sidebar__link"
+              href="{% url 'manager:manager_dashboard' %}"
+              >Manager Dashboard</a
+            >
+          </li>
+          <li class="TAMS-sidebar__item">
+            <a
+              class="TAMS-sidebar__link"
+              href="{% url 'manager:pending_timecards' %}"
+              >Pending Timecards</a
+            >
+          </li>
+
+          <li class="TAMS-sidebar__item">
+            <a
+              class="TAMS-sidebar__link"
+              href="{% url 'manager:pending_leave_requests' %}"
+              >Leave Approvals</a
+            >
+          </li>
+          <li class="TAMS-sidebar__item">
+            <a class="TAMS-sidebar__link" href="{% url 'manager:reports' %}"
+              >Team Reports</a
+            >
+          </li>
+          <li class="TAMS-sidebar__item">
+            <a
+              class="TAMS-sidebar__link"
+              href="{% url 'manager:assigned_employees' %}"
+              >Team Members</a
+            >
+          </li>
+          <li class="TAMS-sidebar__item">
+            <a
+              aria-current="page"
+              class="TAMS-sidebar__link"
+              href="{% url 'manager:delegation_management' %}"
+              >Delegations</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </aside>
+    <div class="TAMS-layout">
+      <!-- Shared header markup. Keep TAMS-header class names consistent. -->
+      <header class="TAMS-header">
+        <span class="TAMS-header__page-name">Delegation Management</span>
+        <div class="TAMS-header__actions">
+          <a
+            class="TAMS-header__notification-link"
+            href="{% url 'shared:notifications' %}"
+            >Notifications</a
+          >
+          <a class="TAMS-header__profile-link" href="{% url 'shared:profile' %}"
+            >Profile</a
+          >
+        </div>
+      </header>
+      <main class="TAMS-main" id="main-content">
+
+        {% if error %} <!-- To display server-side validation errors and Django feedback messages in case something goes sideways. -->
+        <div class="TAMS-alert TAMS-alert--error" role="alert">{{ error }}</div>
+        {% endif %} {% if messages %}{% for message in messages %}
+        <div class="TAMS-alert" role="status">{{ message }}</div>
+        {% endfor %}{% endif %}
+
+        <section
+          aria-labelledby="delegation-management-title"
+          class="TAMS-page-heading delegation-management__heading"
+        >
+          <h1 class="TAMS-page-heading__title" id="delegation-management-title">
+            Delegation Management
+          </h1>
+          <p class="TAMS-page-heading__description">
+            Temporarily grant another active manager access to your team's
+            approval responsibilities. Delegations expire automatically and can
+            be revoked at any time.
+          </p>
+        </section>
+        <section
+          aria-labelledby="delegation-management-create-title"
+          class="TAMS-card delegation-management__create"
+        >
+          <h2 class="TAMS-card__title" id="delegation-management-create-title">
+            Assign Temporary Approval Access
+          </h2>
+          <p class="delegation-management__guidance">
+            Manager must be authorized. Delegate must be active and eligible.
+            Rights must expire and be revocable.
+          </p>
+          <!-- Django: add {% csrf_token %}; check eligibility, date validation, and authorization must be enforced on the server-side. -->
+          <form
+            action=""
+            class="TAMS-form delegation-management__form"
+            method="post"
+          >
+            {% csrf_token %}
+            <div
+              class="TAMS-form__field delegation-management__delegate-employee-field"
+            >
+              <label
+                class="TAMS-form__label"
+                for="delegation-management-delegate-employee"
+              >
+                Delegate Manager
+              </label>
+
+              <select
+                class="TAMS-form__input"
+                id="delegation-management-delegate-employee"
+                name="delegate_employee"
+                required
+              >
+                <option value="">Select a delegate manager</option>
+
+                {% for manager in eligible_managers %}
+                <option value="{{ manager.employee_id }}">
+                  {{ manager.first_name }} {{ manager.last_name }} ({{
+                  manager.email }})
+                </option>
+                {% endfor %}
+              </select>
+
+              <small class="TAMS-form__help">
+                Only active managers are available for delegation.
+              </small>
+            </div>
+            <div
+              class="TAMS-form__field delegation-management__start-date-field"
+            >
+              <label
+                class="TAMS-form__label"
+                for="delegation-management-start-date"
+                >Delegation Start</label
+              >
+              <input
+                class="TAMS-form__input"
+                id="delegation-management-start-date"
+                name="start_date"
+                required=""
+                type="date"
+              />
+            </div>
+            <div class="TAMS-form__field delegation-management__end-date-field">
+              <label
+                class="TAMS-form__label"
+                for="delegation-management-end-date"
+                >Delegation End</label
+              >
+              <input
+                class="TAMS-form__input"
+                id="delegation-management-end-date"
+                name="end_date"
+                required=""
+                type="date"
+              />
+            </div>
+            <div class="TAMS-form__field delegation-management__scope-field">
+              <label class="TAMS-form__label" for="delegation-management-scope"
+                >Approval Scope</label
+              >
+              <select
+                class="TAMS-form__input"
+                id="delegation-management-scope"
+                name="scope"
+                required=""
+              >
+                <option value="timecards">Timecards</option>
+                <option value="time_entries">Time Entries</option>
+                <option value="leave">Leave Requests</option>
+                <option value="all">All listed approvals</option>
+              </select>
+            </div>
+            <div class="TAMS-form__field delegation-management__reason-field">
+              <label class="TAMS-form__label" for="delegation-management-reason"
+                >Reason</label
+              >
+            </div>
+            <div class="TAMS-form__actions">
+              <button class="TAMS-button TAMS-button--primary" type="submit">
+                Create Delegation
+              </button>
+              <a
+                class="TAMS-button TAMS-button--secondary"
+                href="{% url 'manager:manager_dashboard' %}"
+                >Back to Dashboard</a
+              >
+            </div>
+          </form>
+          <div
+            class="TAMS-alert TAMS-alert--error delegation-management__error"
+            hidden=""
+            id="delegation-management-error"
+            role="alert"
+          >
+            Unable to complete this action. Check the form and try again.
+          </div>
+          <div
+            class="TAMS-alert TAMS-alert--success delegation-management__success"
+            hidden=""
+            id="delegation-management-success"
+            role="status"
+          >
+            Changes saved.
+          </div>
+        </section>
+        <section
+          aria-labelledby="delegation-management-active-title"
+          class="TAMS-card delegation-management__active"
+        >
+          <h2 class="TAMS-card__title" id="delegation-management-active-title">
+            Active and Scheduled Delegations
+          </h2>
+          <table class="TAMS-table delegation-management__table">
+            <caption>
+              Delegated approvals
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Delegate Manager</th>
+                <th scope="col">Start Date</th>
+                <th scope="col">End Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+            <!-- Dynamically display delegation records provided by the Django view. -->
+              {% for delegation in delegations %}
+              <tr>
+                <td>
+                  {{ delegation.delegate.first_name }} {{
+                  delegation.delegate.last_name }}
+                  <br />
+                  <small>{{ delegation.delegate.email }}</small>
+                </td>
+
+                <td>{{ delegation.start_datetime|date:"M d, Y" }}</td>
+
+                <td>{{ delegation.end_datetime|date:"M d, Y" }}</td>
+
+                <td>
+                  {% if not delegation.active_status %} Revoked {% elif
+                  delegation.end_datetime < current_time %} Expired {% elif
+                  delegation.start_datetime > current_time %} Scheduled {% else
+                  %} Active {% endif %}
+                </td>
+
+                <td>
+                <!-- To submit a revocation request using the delegation ID and revoke session. The server must verify ownership and authorization before revoking session and restricting access. -->
+                  {% if delegation.active_status %}
+                  <form
+                    method="post"
+                    action="{% url 'manager:delegation_management' %}"
+                  >
+                    {% csrf_token %}
+
+                    <input
+                      type="hidden"
+                      name="id"
+                      value="{{ delegation.pk }}"
+                    />
+
+                    <button
+                      type="submit"
+                      name="intent"
+                      value="revoke"
+                      class="TAMS-button TAMS-button--danger"
+                    >
+                      Revoke
+                    </button>
+                  </form>
+                  {% else %} — {% endif %}
+                </td>
+              </tr>
+
+              {% empty %}
+              <tr>
+                <td colspan="5">No delegations have been created.</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
+  </body>
 </html>
